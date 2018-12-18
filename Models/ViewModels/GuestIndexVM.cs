@@ -7,7 +7,6 @@ namespace Loop.Models.ViewModels
 {
 	public class GuestIndexVM
 	{
-		//Hej Susanne! 
 		public DateTime Start { get; set; }
 		public DateTime Stop { get; set; }
 	}
