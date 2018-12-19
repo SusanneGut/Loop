@@ -52,7 +52,7 @@ namespace Loop.Controllers
 			//Redirect user
 
 			if (string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
-				return RedirectToAction(nameof(MemberController.Index), "members");
+				return RedirectToAction(nameof(MemberController.Index), "member");
 			else
 				return Redirect(viewModel.ReturnUrl);
         }
