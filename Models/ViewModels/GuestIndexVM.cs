@@ -10,7 +10,7 @@ namespace Loop.Models.ViewModels
     {
         public DateTime Time { get; set; }
 
-        public DateTime Start { get; set; }
+		public DateTime Start { get; set; }
 
         public DateTime Stop { get; set; }
     }

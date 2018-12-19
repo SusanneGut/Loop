@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
 {
+	[Authorize]
     public class GuestController : Controller
     {
         GuestsService service;
@@ -24,12 +26,14 @@ namespace Loop.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Start(DateTime time)
-        {
-            service.Start(time);
-            return View(nameof(Start));
-        }
+		[HttpPost]
+		public IActionResult Start(DateTime time)
+		{
+			service.Test();
+			return View(nameof(Start));
+		}
 
-    }
+		//return View(new GuestIndexVM{Start = Start.DateTime.Now})
+		//Update?;
+	}
 }
