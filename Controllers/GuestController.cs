@@ -13,7 +13,6 @@ namespace Loop.Controllers
     {
         GuestsService service;
 
-        [Route("")]
         [HttpGet]
         public IActionResult Index()
         {
