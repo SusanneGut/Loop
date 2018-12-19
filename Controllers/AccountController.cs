@@ -49,11 +49,12 @@ namespace Loop.Controllers
                 return View(viewModel);
             }
 
-            // Redirect user
-            //if (string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
-            //	return RedirectToAction(nameof(MembersController.Index), "members");
-            //else
-            return Redirect(viewModel.ReturnUrl);
+			//Redirect user
+
+			if (string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
+				return RedirectToAction(nameof(MemberController.Index), "members");
+			else
+				return Redirect(viewModel.ReturnUrl);
         }
     }
 }

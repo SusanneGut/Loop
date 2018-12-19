@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models;
+using Loop.Models.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +21,10 @@ namespace Loop
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+
 			var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LoopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			services.AddDbContext<LoopContext>(o => o.UseSqlServer(connString));
+
 			services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
 			services.AddIdentity<IdentityUser, IdentityRole>(o =>
