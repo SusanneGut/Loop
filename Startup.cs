@@ -35,6 +35,8 @@ namespace Loop
 			services.ConfigureApplicationCookie(o => o.LoginPath = "/LogIn");
 
 			services.AddTransient<GuestsService>();
+			services.AddTransient<AccountService>();
+
 			services.AddMvc();
 		}
 
