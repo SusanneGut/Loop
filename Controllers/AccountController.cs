@@ -9,46 +9,46 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
 {
-    public class AccountController : Controller
-    {
-        AccountService service;
+	public class AccountController : Controller
+	{
+		AccountService service;
 
-        public AccountController(AccountService service)
-        {
-            this.service = service;
-        }
+		public AccountController(AccountService service)
+		{
+			this.service = service;
+		}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+		public IActionResult Index()
+		{
+			return View();
+		}
 
-        [HttpGet]
-        [Route("")]
-        [Route("login")]
-        public IActionResult Login(string returnUrl)
-        {
-            var model = new AccountLoginVM
-            {
-                ReturnUrl = returnUrl
-            };
-            return View(model);
-        }
+		[HttpGet]
+		[Route("")]
+		[Route("login")]
+		public IActionResult Login(string returnUrl)
+		{
+			var model = new AccountLoginVM
+			{
+				ReturnUrl = returnUrl
+			};
+			return View(model);
+		}
 
-        [HttpPost]
-        [Route("logIn")]
-        public async Task<IActionResult> Login(AccountLoginVM viewModel)
-        {
-            if(!ModelState.IsValid)
-                return View(viewModel);
+		[HttpPost]
+		[Route("logIn")]
+		public async Task<IActionResult> Login(AccountLoginVM viewModel)
+		{
+			if(!ModelState.IsValid)
+				return View(viewModel);
 
-            // Check if credentials is valid (and set auth cookie)
-            if(!await service.TryLoginAsync(viewModel))
-            {
-                // Show login error
-                ModelState.AddModelError(nameof(AccountLoginVM.Username), "Invalid credentials");
-                return View(viewModel);
-            }
+			// Check if credentials is valid (and set auth cookie)
+			if(!await service.TryLoginAsync(viewModel))
+			{
+				// Show login error
+				ModelState.AddModelError(nameof(AccountLoginVM.Username), "Invalid credentials");
+				return View(viewModel);
+			}
 
 			//Redirect user
 
@@ -75,5 +75,6 @@ namespace Loop.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
+		
 	}
-}
+};
