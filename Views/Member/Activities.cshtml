@@ -1,0 +1,12 @@
+﻿@model MemberActivitiesVM[]
+@{
+    ViewBag.Title = "Activities";
+    Layout = "_Layout";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@foreach(var activity in Model)
+{
+    <p>@activity.ActivityName</p>
+}

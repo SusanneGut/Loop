@@ -68,7 +68,7 @@ namespace Loop.Controllers
 		{
             if(!ModelState.IsValid)
                 //return Content("ModelState is NOT valid.");
-                return View(nameof(Index));
+                return View(member);
 
 
             await service.AddMemberAsync(member);

@@ -12,7 +12,8 @@ namespace Loop.Controllers
     [Authorize]
     public class MemberController : Controller
     {
-        MembersService service;
+        private readonly MembersService service;
+
         public MemberController(MembersService service)
         {
             this.service = service;
@@ -35,13 +36,21 @@ namespace Loop.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult Create(MemberCreateVM activity)
+        public async Task<IActionResult> Create(MemberCreateVM activity)
         {
-            service.AddActivity(activity);
-            return Content("Check if activity is saved in Database");
-            //return View(nameof(Index));
+            if(!ModelState.IsValid)
+            {
+                return View(activity);
+            }
+            await service.AddActivity(activity);
+            return RedirectToAction(nameof(Activities));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Activities()
+        {
+            return View(await service.GetAllActivities());
         }
 
     }

@@ -11,23 +11,23 @@ namespace Loop.Models
 {
 	public class AccountService
 	{
-		IdentityDbContext identityContext;
-		LoopContext loopContext;
-		UserManager<IdentityUser> userManager;
-		SignInManager<IdentityUser> signInManager;
+        private readonly IdentityDbContext identityContext;
+        private readonly LoopContext loopContext;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-		public AccountService(
-			IdentityDbContext identityContext,
-			LoopContext loopContext,
-			UserManager<IdentityUser> userManager,
-			SignInManager<IdentityUser> signInManager
-			)
-		{
-			this.identityContext = identityContext;
-			this.loopContext = loopContext;
-			this.userManager = userManager;
-			this.signInManager = signInManager;
-		}
+        public AccountService(
+            IdentityDbContext identityContext,
+            LoopContext loopContext,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager
+            )
+        {
+            this.identityContext = identityContext;
+            this.loopContext = loopContext;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
 
 		public async Task<bool> TryLoginAsync(AccountLoginVM viewModel)
 		{

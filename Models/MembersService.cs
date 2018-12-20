@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models.Entities;
 using Loop.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Loop.Models
 {
@@ -16,7 +17,7 @@ namespace Loop.Models
             this.context = context;
         }
 
-        public async void AddActivity(MemberCreateVM activity)
+        public async Task AddActivity(MemberCreateVM activity)
         {
             await context
                 .Activity
@@ -25,8 +26,17 @@ namespace Loop.Models
                     ActivityName = activity.ActivityName
                 });
             await context.SaveChangesAsync();
-
         }
 
+        public async Task<MemberActivitiesVM[]> GetAllActivities()
+        {
+            return await context
+                .Activity
+                .Select(o => new MemberActivitiesVM
+                {
+                    ActivityName = o.ActivityName
+                })
+                .ToArrayAsync();
+        }
     }
 }
