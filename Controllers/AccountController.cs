@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models;
 using Loop.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
@@ -56,5 +57,23 @@ namespace Loop.Controllers
 			else
 				return Redirect(viewModel.ReturnUrl);
         }
-    }
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Create(AccountCreateVM member)
+		{
+			if (!ModelState.IsValid)
+
+				return View(nameof(Index));
+
+			await service.AddMemberAsync(member);
+
+			return RedirectToAction(nameof(Index));
+		}
+
+	}
 }

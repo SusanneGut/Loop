@@ -25,22 +25,6 @@ namespace Loop.Controllers
             return View(new MemberIndexVM { Username = User.Identity.Name });
         }
 
-		[HttpGet]
-		public IActionResult Create()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> Create(MemberCreateVM member)
-		{
-			if (!ModelState.IsValid)
-
-				return View(nameof(Index));
-
-			await service.AddMemberAsync(member);
-
-			return RedirectToAction(nameof(Index));
-		}
+		
 	}
 }

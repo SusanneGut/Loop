@@ -41,6 +41,17 @@ namespace Loop.Models
 			return loginResult.Succeeded;
 		}
 
-
+		public async Task AddMemberAsync(AccountCreateVM member)
+		{
+			var user = (new IdentityUser
+			{
+				UserName = member.Name,
+				Email = member.Email,
+			});
+			await userManager.CreateAsync(user, "winter2018");
+			await loopContext.SaveChangesAsync();
+		}
 	}
+
+
 }

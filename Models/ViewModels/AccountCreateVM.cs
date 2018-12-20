@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Loop.Models.ViewModels
 {
-	public class MemberCreateVM
+	public class AccountCreateVM
 	{
 		public int Id { get; set; }
 
@@ -17,5 +17,9 @@ namespace Loop.Models.ViewModels
 		[Required(ErrorMessage = "Enter E-mail")]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
+
+		[Required]
+		[DataType(DataType.Password)]
+		public string Password { get; set; }
 	}
 }
