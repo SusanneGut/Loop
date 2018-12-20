@@ -72,7 +72,7 @@ namespace Loop.Controllers
 
 			await service.AddMemberAsync(member);
 
-			return RedirectToAction(nameof(Index));
+			return RedirectToAction(nameof(Login));
 		}
 
 		
