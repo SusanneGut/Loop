@@ -1,15 +1,22 @@
 ﻿@model MemberIndexVM
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Members";
+    var submitBtn = "Skapa ny aktivitet";
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Members</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <h1>Members</h1>
-    <p>Welcome member - you are logged in as: @Model.Username</p>
-    <a class="btn btn-primary" asp-controller="Member" asp-action="Create">Skapa ny aktivitet</a>
+ 
+    <h1>@ViewBag.Title</h1>
+    <p>
+        Welcome member - you are logged in as: @Model.Username
+    </p>
+    <a class="btn btn-primary btn-sm" asp-action="Create">@submitBtn</a>
     <a class="btn btn-primary" asp-controller="Member" asp-action="Activities">Visa aktiviteter</a>
-
 
 </body>
 </html>

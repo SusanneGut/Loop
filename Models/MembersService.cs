@@ -36,6 +36,7 @@ namespace Loop.Models
                 {
                     ActivityName = o.ActivityName
                 })
+                .OrderBy(p => p.ActivityName)
                 .ToArrayAsync();
         }
     }

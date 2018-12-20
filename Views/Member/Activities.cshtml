@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Activities";
     Layout = "_Layout";
+    var submitBtn = "Create new activity";
 }
 
 <h1>@ViewBag.Title</h1>
@@ -10,3 +11,5 @@
 {
     <p>@activity.ActivityName</p>
 }
+
+<a class="btn btn-primary btn-sm" asp-action="Create">@submitBtn</a>
