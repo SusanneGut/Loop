@@ -40,5 +40,7 @@ namespace Loop.Models
 			var loginResult = await signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, false);
 			return loginResult.Succeeded;
 		}
+
+
 	}
 }
