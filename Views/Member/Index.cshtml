@@ -6,7 +6,11 @@
 </head>
 <body>
     <h1>Members</h1>
-    Welcome member - you are logged in as: @Model.Username
+    <p>Welcome member - you are logged in as: @Model.Username</p>
+    <a class="btn btn-primary" asp-controller="Member" asp-action="Create">Skapa ny aktivitet</a>
+    <a class="btn btn-primary" asp-controller="Member" asp-action="Activities">Visa aktiviteter</a>
+
+
 </body>
 </html>
 
