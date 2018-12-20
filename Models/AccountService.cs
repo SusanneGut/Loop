@@ -43,15 +43,16 @@ namespace Loop.Models
 
 		public async Task AddMemberAsync(AccountCreateVM member)
 		{
-			loopContext.AspNetUsers.Add(new AspNetUsers
-			{
-				UserName = member.Name,
-				Email = member.Email,
-			});
-			//await userManager.CreateAsync(user, "winter2018");
+			//var user = loopContext.AspNetUsers.Add(new AspNetUsers
+			//{
+			//	UserName = member.Name,
+			//	Email = member.Email,
+			//});
+			var user = new IdentityUser { UserName = member.Name };
+
+			await userManager.CreateAsync(user, member.Password);
 			await loopContext.SaveChangesAsync();
 		}
-		
 	}
 
 

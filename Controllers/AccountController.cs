@@ -75,6 +75,6 @@ namespace Loop.Controllers
 			return RedirectToAction(nameof(Login));
 		}
 
-		
+
 	}
 };
