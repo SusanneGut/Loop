@@ -56,7 +56,7 @@ namespace Loop.Controllers
 				return RedirectToAction(nameof(MemberController.Index), "member");
 			else
 				return Redirect(viewModel.ReturnUrl);
-        }
+		}
 		[HttpGet]
 		public IActionResult Create()
 		{
@@ -66,11 +66,12 @@ namespace Loop.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Create(AccountCreateVM member)
 		{
-			if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
+                //return Content("ModelState is NOT valid.");
+                return View(nameof(Index));
 
-				return View(nameof(Index));
 
-			await service.AddMemberAsync(member);
+            await service.AddMemberAsync(member);
 
 			return RedirectToAction(nameof(Login));
 		}
