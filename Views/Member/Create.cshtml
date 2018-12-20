@@ -1,0 +1,20 @@
+﻿@model MemberCreateVM
+@{
+    ViewBag.Title = "Create new activity";
+    Layout = "_Layout";
+}
+
+
+<div class="card-body">
+    <h5>Create</h5>
+
+    <form asp-controller="Member" asp-action="create">
+        <div class="form-group mx-sm-3 mb-2">
+            <label asp-for="ActivityName"></label>
+            <input asp-for="ActivityName" />
+            <span asp-validation-for="ActivityName"></span>
+            <br />
+            <button>OK</button>
+        </div>
+    </form>
+</div>
