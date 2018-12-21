@@ -29,43 +29,36 @@ namespace Loop.Models
                 .ToArrayAsync();
         }
 
-        public async Task SetStart(string time)
+		public async Task SetStart(string time)
+		{
+			var lastPost = context
+				 .Timestamp
+				 .Last();
+
+			if (lastPost.Stop != null)
+			{
+				await context
+					 .Timestamp
+					 .AddAsync(new Timestamp
+					 {
+						 Start = time
+					 });
+				await context.SaveChangesAsync();
+			}
+
+		}
+
+		public async Task SetStop(string time)
         {
-            var lastPost = context
-                 .Timestamp
-                 .Last();
-
-            if(lastPost.Stop != null)
-            {
-                await context
-                     .Timestamp
-                     .AddAsync(new Timestamp
-                     {
-                         Start = time
-                     });
-                await context.SaveChangesAsync();
-            }
-
-        }
-
-        public async Task SetStop(string time)
-        {
-            //var lastPostId = context
-            //    .Timestamp
-            //    .Select(o => o.Id)
-            //    .Max();
-
             var lastPost = context
                 .Timestamp
                 .Last();
+			if(lastPost.Stop == null)
+			lastPost.Stop = time;
 
-            if(lastPost.Stop != null)
-            {
-                lastPost.Stop = time;
-                await context.SaveChangesAsync();
-            }
+			await context.SaveChangesAsync();
+		}
 
 
-        }
-    }
+	}
 }
