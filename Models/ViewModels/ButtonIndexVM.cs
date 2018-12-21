@@ -8,6 +8,8 @@ namespace Loop.Models.ViewModels
 {
     public class ButtonIndexVM
     {
+        public int Id { get; set; }
+
         [Display(Name = "Starttid")]
         public string Start { get; set; }
 

@@ -143,12 +143,6 @@ namespace Loop.Models.Entities
             {
                 entity.Property(e => e.Start)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Stop)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Stop).HasMaxLength(50);
