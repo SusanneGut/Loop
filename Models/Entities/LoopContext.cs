@@ -8,7 +8,6 @@ namespace Loop.Models.Entities
     {
         public LoopContext()
         {
-			
         }
 
         public LoopContext(DbContextOptions<LoopContext> options)
@@ -24,6 +23,7 @@ namespace Loop.Models.Entities
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Timestamp> Timestamp { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -137,6 +137,18 @@ namespace Loop.Models.Entities
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<Timestamp>(entity =>
+            {
+                entity.Property(e => e.Start)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Stop)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
         }
     }
