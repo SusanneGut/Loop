@@ -9,63 +9,63 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
 {
-	public class AccountController : Controller
-	{
-		AccountService service;
+    public class AccountController : Controller
+    {
+        AccountService service;
 
-		public AccountController(AccountService service)
-		{
-			this.service = service;
-		}
+        public AccountController(AccountService service)
+        {
+            this.service = service;
+        }
 
-		public IActionResult Index()
-		{
-			return View();
-		}
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-		[HttpGet]
-		[Route("")]
-		[Route("login")]
-		public IActionResult Login(string returnUrl)
-		{
-			var model = new AccountLoginVM
-			{
-				ReturnUrl = returnUrl
-			};
-			return View(model);
-		}
+        [HttpGet]
+        [Route("")]
+        [Route("login")]
+        public IActionResult Login(string returnUrl)
+        {
+            var model = new AccountLoginVM
+            {
+                ReturnUrl = returnUrl
+            };
+            return View(model);
+        }
 
-		[HttpPost]
-		[Route("logIn")]
-		public async Task<IActionResult> Login(AccountLoginVM viewModel)
-		{
-			if(!ModelState.IsValid)
-				return View(viewModel);
+        [HttpPost]
+        [Route("logIn")]
+        public async Task<IActionResult> Login(AccountLoginVM viewModel)
+        {
+            if(!ModelState.IsValid)
+                return View(viewModel);
 
-			// Check if credentials is valid (and set auth cookie)
-			if(!await service.TryLoginAsync(viewModel))
-			{
-				// Show login error
-				ModelState.AddModelError(nameof(AccountLoginVM.Username), "Invalid credentials");
-				return View(viewModel);
-			}
+            // Check if credentials is valid (and set auth cookie)
+            if(!await service.TryLoginAsync(viewModel))
+            {
+                // Show login error
+                ModelState.AddModelError(nameof(AccountLoginVM.Username), "Invalid credentials");
+                return View(viewModel);
+            }
 
-			//Redirect user
+            //Redirect user
 
-			if (string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
-				return RedirectToAction(nameof(MemberController.Index), "member");
-			else
-				return Redirect(viewModel.ReturnUrl);
-		}
-		[HttpGet]
-		public IActionResult Create()
-		{
-			return View();
-		}
+            if(string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
+                return RedirectToAction(nameof(MemberController.Index), "member");
+            else
+                return Redirect(viewModel.ReturnUrl);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-		[HttpPost]
-		public async Task<IActionResult> Create(AccountCreateVM member)
-		{
+        [HttpPost]
+        public async Task<IActionResult> Create(AccountCreateVM member)
+        {
             if(!ModelState.IsValid)
                 //return Content("ModelState is NOT valid.");
                 return View(member);
@@ -73,9 +73,9 @@ namespace Loop.Controllers
 
             await service.AddMemberAsync(member);
 
-			return RedirectToAction(nameof(Login));
-		}
+            return RedirectToAction(nameof(Login));
+        }
 
 
-	}
+    }
 };
