@@ -1,0 +1,26 @@
+﻿@model ButtonIndexVM[]
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "TimeStamp";
+}
+
+<ul class="list-group">
+    @foreach(var time in Model)
+    {
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-6">
+                    @time.Start
+                </div>
+                <div class="col-md-6">
+                    @time.Stop
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+<br />
+<a class="btn btn-primary btn-sm" asp-controller="Button" asp-action="SetStart">Stämpla in!</a>
+<a class="btn btn-primary btn-sm" asp-controller="Button" asp-action="SetStop">Stämpla ut!</a>
+
