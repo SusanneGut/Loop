@@ -42,28 +42,15 @@ namespace Loop.Models
 
         public async Task SetStop(string time)
         {
-            var lastPostId = context
-                .Timestamp
-                .Select(o => o.Id)
-                .Max();
-
-            var test = context
+            var lastPost = context
                 .Timestamp
                 .Last();
 
-            if(test.Start != null)
-            {
-                await context
-                .Timestamp
-                //.Where(o=>o.Id==lastPostId)
-                .AddAsync(new Timestamp
-                {
-                    Stop = time
-                });
-                await context.SaveChangesAsync();
-            }
-        }
+			lastPost.Stop = time;
+
+			await context.SaveChangesAsync();
+		}
 
 
-    }
+	}
 }
