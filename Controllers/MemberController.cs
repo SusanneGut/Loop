@@ -53,5 +53,11 @@ namespace Loop.Controllers
             return View(await service.GetAllActivities());
         }
 
+		[HttpGet]
+		public IActionResult Edit()
+		{
+			return View();
+		}
+
     }
 }

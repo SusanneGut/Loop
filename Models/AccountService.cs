@@ -48,9 +48,9 @@ namespace Loop.Models
 			//	UserName = member.Name,
 			//	Email = member.Email,
 			//});
-			var user = new IdentityUser { UserName = member.Name };
+			var user = new IdentityUser { UserName = member.Name, Email = member.Email, PasswordHash = member.Password };
 
-			await userManager.CreateAsync(user, member.Password);
+			await userManager.CreateAsync(user);
 			await loopContext.SaveChangesAsync();
 		}
 	}
