@@ -39,5 +39,27 @@ namespace Loop.Models
                 .OrderBy(p => p.ActivityName)
                 .ToArrayAsync();
         }
-    }
+
+		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
+		{
+			return await context
+				.AspNetUsers
+				.Select(o => new MemberEditVM
+				{
+					Name = o.UserName,
+					Email = o.Email,
+				})
+			   .SingleOrDefaultAsync(e => e.Name == UserName);
+
+		}
+
+		public async Task EditAsyc(MemberEditVM User)
+		{
+			User = await GetUserByNameAsync(User.Name);
+			User.Name = User.Name;
+			User.Email = User.Email;
+			await context.SaveChangesAsync();
+
+		}
+	}
 }

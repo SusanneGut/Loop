@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models;
+using Loop.Models.Entities;
 using Loop.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -54,10 +55,16 @@ namespace Loop.Controllers
         }
 
 		[HttpGet]
-		public IActionResult Edit()
+		public async Task<IActionResult> Edit(string UserName)
 		{
-			return View();
+			return View(await service.GetUserByNameAsync(UserName));
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> Edit(MemberEditVM User)
+		{
+			await service.EditAsyc(User);
+			return RedirectToAction(nameof(Edit));
+		}
     }
 }
