@@ -53,11 +53,12 @@ namespace Loop.Models
 
 		}
 
-		public async Task EditAsyc(MemberEditVM User)
+		public async Task EditAsync(MemberEditVM User)
 		{
-			User = await GetUserByNameAsync(User.Name);
-			User.Name = User.Name;
-			User.Email = User.Email;
+			var user = await GetUserByNameAsync(User.Name);
+
+			user.Name = User.Name;
+			user.Email = User.Email;
 			await context.SaveChangesAsync();
 
 		}
