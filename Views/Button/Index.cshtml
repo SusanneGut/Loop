@@ -3,11 +3,20 @@
 @{
     Layout = "_Layout";
     ViewBag.Title = "TimeStamp";
+    bool isActive = false;
 }
 
 <ul class="list-group">
     @foreach(var time in Model)
     {
+        @if(time.Stop == null)
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
         <li class="list-group-item">
             <div class="row">
                 <div class="col-md-6">
@@ -21,6 +30,7 @@
     }
 </ul>
 <br />
-<a class="btn btn-primary btn-sm" asp-controller="Button" asp-action="SetStart">Stämpla in!</a>
-<a class="btn btn-primary btn-sm" asp-controller="Button" asp-action="SetStop">Stämpla ut!</a>
+
+<a class=@(isActive?"btn btn-light disabled":"btn btn-light") asp-controller="Button" asp-action="SetStart">Stämpla in!</a>
+<a class=@(isActive?"btn btn-light":"btn btn-light disabled") asp-controller="Button" asp-action="SetStop">Stämpla ut!</a>
 
