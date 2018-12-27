@@ -1,7 +1,38 @@
-﻿
+﻿@model MemberEditVM;
 @{
-    ViewData["Title"] = "Edit";
+    ViewBag.Title = "Edit member details";
+    Layout = "_Layout";
 }
 
-<h1>Edit</h1>
+
+<div class="card-body">
+    <h5>Edit</h5>
+
+    <form asp-controller="Member" asp-action="edit">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" />
+                <span class="font-weight-light text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Email"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Email" />
+                <span class="font-weight-light text-danger" asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button style="min-width: 100px" class="btn btn-primary btn-sm">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>
+@section scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}
 
