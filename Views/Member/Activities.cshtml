@@ -7,14 +7,16 @@
 
 <h1>@ViewBag.Title</h1>
 
-@foreach(var activity in Model)
+@foreach (var activity in Model)
 {
-    <form asp-controller="Button" asp-action="SetStart">
-        <label class="col-md-2">@activity.ActivityName</label>
-        <input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />
-            <button class="btn-primary btn-sm">Start</button>
-        <span class="col-md-2">@activity.Id</span>
-    </form>
+<form asp-controller="Button" asp-action="SetStart">
+    <label class="col-md-2">@activity.ActivityName</label>
+    <input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />
+    <button class="btn-primary btn-sm">Start</button>
+    <a asp-controller="Member" asp-action="Activity" asp-route-id="@activity.ActivityId">Show @activity.ActivityName</a>
+
+    <span class="col-md-2">@activity.Id</span>
+</form>
 }
 
 <a class="btn btn-primary btn-sm" asp-action="Create">@submitBtn</a>

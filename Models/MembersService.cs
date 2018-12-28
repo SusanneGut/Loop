@@ -41,6 +41,18 @@ namespace Loop.Models
                 .ToArrayAsync();
         }
 
+		public async Task <MemberActivitiesVM> GetActivityByIdAsync(int Id)
+		{
+			return await context
+				.Activity
+				.Select(o => new MemberActivitiesVM
+				{
+					ActivityName = o.ActivityName,
+					Timestamp = o.Timestamp
+				})
+				.SingleOrDefaultAsync(e => e.Id == Id);
+		}
+
         public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
         {
             return await context

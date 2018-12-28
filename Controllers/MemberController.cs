@@ -55,6 +55,12 @@ namespace Loop.Controllers
         }
 
 		[HttpGet]
+		public async Task<IActionResult> Activity(int Id)
+		{
+			return View(await service.GetActivityByIdAsync(Id));
+		}
+
+		[HttpGet]
 		[Route("/member/edit/{name}")]
 
 		public async Task<IActionResult> Edit(string User)

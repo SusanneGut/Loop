@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loop.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,5 +11,7 @@ namespace Loop.Models.ViewModels
         public int Id { get; set; }
         public string ActivityName { get; set; }
         public int ActivityId { get; set; }
+		public ICollection <Timestamp> Timestamp { get; set; }
+
     }
 }
