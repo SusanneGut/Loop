@@ -146,6 +146,12 @@ namespace Loop.Models.Entities
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Stop).HasMaxLength(50);
+
+                entity.HasOne(d => d.Activity)
+                    .WithMany(p => p.Timestamp)
+                    .HasForeignKey(d => d.ActivityId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Timestamp__Activ__6E01572D");
             });
         }
     }

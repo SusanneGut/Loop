@@ -8,5 +8,8 @@ namespace Loop.Models.Entities
         public int Id { get; set; }
         public string Start { get; set; }
         public string Stop { get; set; }
+        public int ActivityId { get; set; }
+
+        public virtual Activity Activity { get; set; }
     }
 }
