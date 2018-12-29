@@ -26,7 +26,7 @@ namespace Loop.Models
                 .AddAsync(new Activity
                 {
                     ActivityName = activity.ActivityName,
-                    Id=activity.ActivityId
+					Id = activity.ActivityId
                 });
             await context.SaveChangesAsync();
         }

@@ -25,10 +25,10 @@ namespace Loop.Models
                 {
                     Start = o.Start,
                     Stop = o.Stop,
-                    //Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
-                })
+					//Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
+		})
                 .ToArrayAsync();
-        }
+		}
 
 
         public async Task SetStart(string time, int id)
@@ -45,8 +45,9 @@ namespace Loop.Models
                         .Timestamp
                         .AddAsync(new Timestamp
                         {
-                            ActivityId = id,
-                            Start = time
+                            Start = time,
+							ActivityId = id
+							
                         });
                     await context.SaveChangesAsync();
                 }

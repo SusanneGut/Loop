@@ -24,7 +24,7 @@ namespace Loop.Controllers
 
         public async Task<IActionResult> SetStart(int id)
         {
-            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), id);
+            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(),id);
             //await service.SetStart(DateTime.Now.ToString());
             return RedirectToAction(nameof(Index));
         }
