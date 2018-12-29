@@ -12,5 +12,6 @@ namespace Loop.Models.ViewModels
         [Display(Name = "Activity name")]
         [Required(ErrorMessage = "Please write the name of activity.")]
         public string ActivityName { get; set; }
+        public int ActivityId { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 
 @foreach (var activity in Model)
 {
-<form asp-controller="Button" asp-action="SetStart">
+<form asp-controller="Button" asp-action="SetStart" asp-route="@activity.ActivityId">
     <label class="col-md-2">@activity.ActivityName</label>
     <input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />
     <button class="btn-primary btn-sm">Start</button>

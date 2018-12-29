@@ -14,5 +14,5 @@ namespace Loop.Models.Entities
         public string ActivityName { get; set; }
 
         public virtual ICollection<Timestamp> Timestamp { get; set; }
-	}
+    }
 }
