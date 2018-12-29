@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models.Entities;
 using Loop.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Loop.Models
@@ -48,9 +50,11 @@ namespace Loop.Models
 				.Select(o => new MemberActivitiesVM
 				{
 					ActivityName = o.ActivityName,
-					Timestamp = o.Timestamp
+					Timestamp = o.Timestamp,
+					ActivityId = o.Id
+					
 				})
-				.SingleOrDefaultAsync(e => e.Id == Id);
+				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
 
         public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
@@ -70,7 +74,7 @@ namespace Loop.Models
         {
             var user = await GetUserByNameAsync(User.Name);
 
-            user.Name = User.Name;
+			user.Name = User.Name;
             user.Email = User.Email;
             await context.SaveChangesAsync();
 

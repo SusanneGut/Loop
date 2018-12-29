@@ -6,6 +6,7 @@ using Loop.Models;
 using Loop.Models.Entities;
 using Loop.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
@@ -55,6 +56,8 @@ namespace Loop.Controllers
         }
 
 		[HttpGet]
+		[Route("/member/activity/{Id}")]
+
 		public async Task<IActionResult> Activity(int Id)
 		{
 			return View(await service.GetActivityByIdAsync(Id));
