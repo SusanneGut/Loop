@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loop.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Loop.Models.ViewModels
 
         [Display(Name = "Stopptid")]
         public string Stop { get; set; }
+
+		public string ActivityId { get; set; }
 
 		public int Span { get; set; }
 

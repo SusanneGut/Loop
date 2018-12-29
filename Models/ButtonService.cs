@@ -41,15 +41,16 @@ namespace Loop.Models
 
                 if(lastPost.Stop != null)
                 {
-                    await context
-                        .Timestamp
-                        .AddAsync(new Timestamp
-                        {
-                            Start = time,
+					await context
+						.Timestamp
+						.AddAsync(new Timestamp
+						{
+							Start = time,
 							ActivityId = id
-							
-                        });
-                    await context.SaveChangesAsync();
+
+						});
+					
+					await context.SaveChangesAsync();
                 }
             }
             else

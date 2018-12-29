@@ -11,7 +11,10 @@ namespace Loop.Models.ViewModels
         public int Id { get; set; }
         public string ActivityName { get; set; }
         public int ActivityId { get; set; }
-		public ICollection <Timestamp> Timestamp { get; set; }
+		public ICollection<Timestamp> Timestamp { get; set; }
+		public string Start { get; set; }
+		public string Stop { get; set; }
 
-    }
+
+	}
 }
