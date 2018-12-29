@@ -15,5 +15,8 @@ namespace Loop.Models.ViewModels
 
         [Display(Name = "Stopptid")]
         public string Stop { get; set; }
-    }
+
+		public int Span { get; set; }
+
+	}
 }

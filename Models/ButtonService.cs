@@ -24,10 +24,12 @@ namespace Loop.Models
                 .Select(o => new ButtonIndexVM
                 {
                     Start = o.Start,
-                    Stop = o.Stop
-                })
+                    Stop = o.Stop,
+					//Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
+		})
                 .ToArrayAsync();
-        }
+		}
+
 
         public async Task SetStart(string time)
         {

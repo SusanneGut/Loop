@@ -32,13 +32,13 @@ namespace Loop.Models
 
         public async Task<MemberActivitiesVM[]> GetAllActivities()
         {
-            return await context
-                .Activity
-                .Select(o => new MemberActivitiesVM
-                {
-                    Id = o.Id,
-                    ActivityName = o.ActivityName
-                })
+			return await context
+				.Activity
+				.Select(o => new MemberActivitiesVM
+				{
+					Id = o.Id,
+					ActivityName = o.ActivityName,
+				})
                 .OrderBy(p => p.ActivityName)
                 .ToArrayAsync();
         }
