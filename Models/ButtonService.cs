@@ -31,7 +31,7 @@ namespace Loop.Models
 		}
 
 
-        public async Task SetStart(string time)
+        public async Task SetStart(string time, int id)
         {
             if(context.Timestamp.Count() > 0)
             {
@@ -45,7 +45,9 @@ namespace Loop.Models
                         .Timestamp
                         .AddAsync(new Timestamp
                         {
-                            Start = time
+                            Start = time,
+							ActivityId = id
+							
                         });
                     await context.SaveChangesAsync();
                 }

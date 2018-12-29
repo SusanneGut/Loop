@@ -22,9 +22,9 @@ namespace Loop.Controllers
             return View(await service.GetAllTimes());
         }
 
-        public async Task<IActionResult> SetStart()
+        public async Task<IActionResult> SetStart(int id)
         {
-            await service.SetStart(DateTime.Now.ToUniversalTime().ToString());
+            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(),id);
             //await service.SetStart(DateTime.Now.ToString());
             return RedirectToAction(nameof(Index));
         }
