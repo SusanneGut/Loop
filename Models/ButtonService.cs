@@ -31,6 +31,7 @@ namespace Loop.Models
 		}
 
 
+
         public async Task SetStart(string time, int id)
         {
             if(context.Timestamp.Count() > 0)

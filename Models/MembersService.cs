@@ -71,9 +71,9 @@ namespace Loop.Models
 					ActivityId = o.Id,
 					Start = o.Start,
 					Stop = o.Stop
-
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
+
 		}
 
 		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
