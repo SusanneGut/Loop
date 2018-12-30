@@ -26,7 +26,6 @@ namespace Loop.Models
                 .AddAsync(new Activity
                 {
                     ActivityName = activity.ActivityName,
-					//Id = activity.ActivityId,
                 });
 
             await context.SaveChangesAsync();
@@ -47,34 +46,20 @@ namespace Loop.Models
 
 
 
-		//public async Task <MemberActivitiesVM> GetActivityByIdAsync(int Id)
-		//{
-		//	return await context
-		//		.Activity
-		//		.Select(o => new MemberActivitiesVM
-		//		{
-		//			ActivityName = o.ActivityName,
-		//			Timestamp = o.Timestamp,
-		//			ActivityId = o.Id,
-
-		//		})
-		//		.SingleOrDefaultAsync(e => e.ActivityId == Id);
-		//}
-
 		public async Task<MemberActivitiesVM> GetActivityByIdAsync(int Id)
 		{
 			return await context
-				.Timestamp
+				.Activity
 				.Select(o => new MemberActivitiesVM
 				{
-					ActivityName = o.Activity.ActivityName,
+					ActivityName = o.ActivityName,
 					ActivityId = o.Id,
-					Start = o.Start,
-					Stop = o.Stop
+
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
-
 		}
+
+
 
 		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
         {
