@@ -1,0 +1,137 @@
+﻿@blue: #0077d9;
+@red: #d50000;
+@purple: #8b40ac;
+@green: #008a0a;
+@grey: #949494;
+@darkgrey: #606060;
+@lightgrey: #eaeaea;
+@lightergrey: #f7f7f7;
+
+
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.loop-error {
+    font-size: 0.6rem;
+    color: red;
+}
+
+.loop-color {
+    padding: 0;
+    margin: 0;
+    height: 0;
+    width: 100vh;
+    box-shadow: 0 0 3rem @green
+}
+
+.loop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100px;
+    margin: 0;
+    background-color: @darkgrey;
+    padding: 10px;
+    border-top: 40px solid white;
+}
+
+.loop-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loop-create {
+    text-align: center;
+    width: 300px;
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+
+    .loop-button {
+        .loop-button;
+        width: 100%;
+    }
+}
+
+.loop-blue-nav {
+    .loop-nav;
+    box-shadow: 0 0 3rem @blue;
+}
+
+.loop-red-nav {
+    .loop-nav;
+    box-shadow: 0 0 3rem @red;
+}
+
+.loop-purple-nav {
+    .loop-nav;
+    box-shadow: 0 0 3rem @purple;
+}
+
+.loop-green-nav {
+    .loop-nav;
+    box-shadow: 0 0 3rem @green;
+}
+
+.loop-grey-nav {
+    .loop-nav;
+    box-shadow: 0 0 3rem @grey;
+}
+
+.loop-button {
+    background-color: @lightgrey;
+    border: 1px solid @grey;
+    border-radius: 0.5rem;
+    color: @darkgrey;
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.05rem;
+    margin: 5px 0;
+    min-width: 200px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.7rem;
+    transition: 0.1s ease;
+
+    &:hover {
+        background-color: @lightergrey;
+        color: @darkgrey;
+        cursor: pointer;
+        letter-spacing: 0.2rem;
+        text-decoration: none;
+    }
+
+    &:focus {
+        color: #00ff00;
+        background-color: #333333;
+        outline: 0;
+        box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+
+.loop-form-input {
+    display: block;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+
+    &:focus {
+        font-size: 1.25rem;
+        font-family: monospace;
+        color: #00ff00;
+        background-color: #333333;
+        outline: 0;
+        box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
+    }
+}

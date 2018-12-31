@@ -43,6 +43,13 @@ namespace Loop.Models.Entities
                 entity.Property(e => e.ActivityName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Activity)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Activity__UserId__14270015");
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>

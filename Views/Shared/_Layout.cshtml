@@ -3,11 +3,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="container">
+    <div class="loop-nav">
+        <a asp-controller="Account" asp-action="Login">
+            <img src="~/img/LoopLogo.svg" alt="Loop logo" />
+        </a>
+    </div>
+
+
+    <div class="loop-container">
         @RenderBody()
     </div>
     @RenderSection("scripts", false)

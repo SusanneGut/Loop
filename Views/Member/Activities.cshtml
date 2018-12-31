@@ -5,18 +5,18 @@
     var submitBtn = "Create new activity";
 }
 
+<div>
 <h1>@ViewBag.Title</h1>
-
 @foreach (var activity in Model)
 {
 <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.ActivityId">
-    <label class="col-md-2">@activity.ActivityName</label>
+    <label>@activity.ActivityName</label>
     <input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />
-    <button class="btn-primary btn-sm">Start</button>
+    <button class="loop-button">Start</button>
     <a asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
 
-    <span class="col-md-2">@activity.Id</span>
+    <span>@activity.Id</span>
 </form>
 }
-
-<a class="btn btn-primary btn-sm" asp-action="Create">@submitBtn</a>
+<a class="loop-button" asp-action="Create">@submitBtn</a>
+</div>

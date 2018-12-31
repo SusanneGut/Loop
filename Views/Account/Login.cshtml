@@ -4,23 +4,27 @@
     ViewBag.Title = "Login";
 }
 
-<h1>Login</h1>
+<div class="loop-create">
 
-<form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-    <label asp-for="Username"></label>
-    <input asp-for="Username" />
-    <span asp-validation-for="Username"></span>
+    <h1>Login</h1>
+
+    <form class="form-group" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+        <label asp-for="Username"></label>
+        <input class="loop-form-input" asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+        <br />
+        <label asp-for="Password"></label>
+        <input class="loop-form-input" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+        <br />
+        <input class="loop-button" type="submit" value="Login" />
+    </form>
     <br />
-    <label asp-for="Password"></label>
-    <input asp-for="Password" />
-    <span asp-validation-for="Password"></span>
+
+    <a class="loop-button" asp-controller="Account" asp-action="Create">Create Account</a>
     <br />
-    <input class="btn btn-primary" type="submit" value="Login" />
-</form>
-<br />
-<a class="btn btn-primary" asp-controller="Account" asp-action="Create">Create Account</a>
-<br />
-<br />
-<a class="btn btn-primary" asp-controller="Button" asp-action="Index">LOOP</a>
+    <br />
+    <a class="loop-button" asp-controller="Button" asp-action="Index">LOOP</a>
+</div>
 
 
