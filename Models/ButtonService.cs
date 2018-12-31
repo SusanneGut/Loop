@@ -30,6 +30,20 @@ namespace Loop.Models
                 .ToArrayAsync();
 		}
 
+		//public async Task<ButtonIndexVM> GetTimeByProject(int id)
+		//{
+		//	return await context
+		//		.Timestamp
+		//		.Select(o=> new ButtonIndexVM
+		//		{
+		//			ActivityName = o.Activity.ActivityName,
+		//			ActivityId = o.Id,
+		//			Start = o.Start,
+		//			Stop = o.Stop
+		//		})
+		//		.SingleOrDefaultAsync(e => e.ActivityId == id);
+		//}
+
 
         public async Task SetStart(string time, int id)
         {
@@ -41,15 +55,16 @@ namespace Loop.Models
 
                 if(lastPost.Stop != null)
                 {
-                    await context
-                        .Timestamp
-                        .AddAsync(new Timestamp
-                        {
-                            Start = time,
+					await context
+						.Timestamp
+						.AddAsync(new Timestamp
+						{
+							Start = time,
 							ActivityId = id
-							
-                        });
-                    await context.SaveChangesAsync();
+
+						});
+					
+					await context.SaveChangesAsync();
                 }
             }
             else

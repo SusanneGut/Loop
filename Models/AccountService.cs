@@ -43,9 +43,9 @@ namespace Loop.Models
 
 		public async Task AddMemberAsync(AccountCreateVM member)
 		{
-			var user = new IdentityUser { UserName = member.Name, Email = member.Email, PasswordHash = member.Password };
+			var user = new IdentityUser { UserName = member.Name, Email = member.Email };
 
-			await userManager.CreateAsync(user);
+			await userManager.CreateAsync(user,member.Password);
 			await loopContext.SaveChangesAsync();
 		}
 	}

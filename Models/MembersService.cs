@@ -26,13 +26,13 @@ namespace Loop.Models
                 .AddAsync(new Activity
                 {
                     ActivityName = activity.ActivityName,
-					Id = activity.ActivityId
                 });
+
             await context.SaveChangesAsync();
         }
 
-        public async Task<MemberActivitiesVM[]> GetAllActivities()
-        {
+		public async Task<MemberActivitiesVM[]> GetAllActivities()
+		{
 			return await context
 				.Activity
 				.Select(o => new MemberActivitiesVM
@@ -40,25 +40,28 @@ namespace Loop.Models
 					Id = o.Id,
 					ActivityName = o.ActivityName,
 				})
-                .OrderBy(p => p.ActivityName)
-                .ToArrayAsync();
-        }
+				.OrderBy(p => p.ActivityName)
+				.ToArrayAsync();
+		}
 
-		public async Task <MemberActivitiesVM> GetActivityByIdAsync(int Id)
+
+
+		public async Task<MemberActivitiesVM> GetActivityByIdAsync(int Id)
 		{
 			return await context
 				.Activity
 				.Select(o => new MemberActivitiesVM
 				{
 					ActivityName = o.ActivityName,
-					Timestamp = o.Timestamp,
-					ActivityId = o.Id
-					
+					ActivityId = o.Id,
+
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
 
-        public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
+
+
+		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
         {
             return await context
                 .AspNetUsers
