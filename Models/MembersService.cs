@@ -13,10 +13,13 @@ namespace Loop.Models
     public class MembersService
     {
         LoopContext context;
+		UserManager<IdentityUser> userManager;
 
-        public MembersService(LoopContext context)
+
+		public MembersService(LoopContext context, UserManager<IdentityUser> userManager)
         {
             this.context = context;
+			this.userManager = userManager;
         }
 
         public async Task AddActivity(MemberCreateVM activity)
@@ -55,30 +58,31 @@ namespace Loop.Models
 					ActivityName = o.ActivityName,
 					ActivityId = o.Id,
 					
+
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
 
 
 
-		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
+		public async Task<AspNetUsers> GetUserByNameAsync(string UserName)
         {
             return await context
                 .AspNetUsers
-                .Select(o => new MemberEditVM
+                .Select(o => new AspNetUsers
                 {
-                    Name = o.UserName,
+                    UserName = o.UserName,
                     Email = o.Email,
                 })
-               .SingleOrDefaultAsync(e => e.Name == UserName);
+               .SingleOrDefaultAsync(e => e.UserName == UserName);
 
         }
 
-        public async Task EditAsync(MemberEditVM User)
+        public async Task EditAsync(AspNetUsers User)
         {
-            var user = await GetUserByNameAsync(User.Name);
+            var user = await GetUserByNameAsync(User.UserName);
 
-			user.Name = User.Name;
+			user.UserName = User.UserName;
             user.Email = User.Email;
             await context.SaveChangesAsync();
 
