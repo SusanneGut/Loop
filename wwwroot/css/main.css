@@ -26,7 +26,8 @@ body {
 .loop-container {
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 .loop-create {
@@ -155,6 +156,13 @@ body {
   background-color: #333333;
   outline: 0;
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+section {
+  display: flex;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 .loop-form-input {
   display: block;

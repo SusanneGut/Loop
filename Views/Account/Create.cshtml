@@ -3,21 +3,17 @@
 <div class="loop-create">
     <h4>Create New Account</h4>
     <form asp-controller="Account" asp-action="Create">
-        <div>
-            <label asp-for="Name"></label>
-            <input class="loop-form-input" asp-for="Name" />
+            @*<label asp-for="Name"></label>*@
+            <input class="loop-form-input" asp-for="Name" placeholder="Username"/>
             <span class="loop-error" asp-validation-for="Name"></span>
-        </div>
-        <div>
-            <label asp-for="Email"></label>
-            <input class="loop-form-input" asp-for="Email" />
+        <br />
+            @*<label asp-for="Email"></label>*@
+            <input class="loop-form-input" asp-for="Email" placeholder="Email"/>
             <span class="loop-error" asp-validation-for="Email"></span>
-        </div>
-        <div>
-            <label asp-for="Password"></label>
-            <input class="loop-form-input" asp-for="Password" />
+        <br />
+            @*<label asp-for="Password"></label>*@
+            <input class="loop-form-input" asp-for="Password" placeholder="•••••"/>
             <span class="loop-error" asp-validation-for="Password"></span>
-        </div>
         <br />
         <button class="loop-button">Create</button>
     </form>

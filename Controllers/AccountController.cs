@@ -67,7 +67,6 @@ namespace Loop.Controllers
         public async Task<IActionResult> Create(AccountCreateVM member)
         {
             if(!ModelState.IsValid)
-                //return Content("ModelState is NOT valid.");
                 return View(nameof(Index));
 
             await service.AddMemberAsync(member);

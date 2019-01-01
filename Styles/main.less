@@ -6,6 +6,9 @@
 @darkgrey: #606060;
 @lightgrey: #eaeaea;
 @lightergrey: #f7f7f7;
+@dataBg: #333333;
+@dataGreen: #00ff00;
+@dataFont: monospace;
 
 
 body {
@@ -40,7 +43,8 @@ body {
 .loop-container {
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -108,14 +112,21 @@ body {
     }
 
     &:focus {
-        color: #00ff00;
-        background-color: #333333;
+        color: @dataGreen;
+        background-color: @dataBg;
         outline: 0;
         box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
     }
 }
 
+section {
+    display: flex;
+}
 
+.disabled {
+    pointer-events: none;
+    opacity: .5;
+}
 
 .loop-form-input {
     display: block;
@@ -128,9 +139,9 @@ body {
 
     &:focus {
         font-size: 1.25rem;
-        font-family: monospace;
-        color: #00ff00;
-        background-color: #333333;
+        font-family: @dataFont;
+        color: @dataGreen;
+        background-color: @dataBg;
         outline: 0;
         box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
     }

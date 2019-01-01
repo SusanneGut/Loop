@@ -6,34 +6,39 @@
     bool isActive = false;
 }
 
-<ul class="list-group">
-    @foreach(var time in Model)
-    {
-        @if(time.Stop == null)
-        {
-            isActive = true;
-        }
-        else
-        {
-            isActive = false;
-        }
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-md-6">
-                    @time.Start
-                </div>
-                <div class="col-md-6">
-                    @time.Stop
-                </div>
-                @*<div class="col-md-6">
-                    @time.Span
-                </div>*@
-            </div>
-        </li>
-    }
-</ul>
-<br />
 
-<a class=@(isActive?"btn btn-light disabled":"btn btn-light") asp-controller="Button" asp-action="SetStart">Stämpla in!</a>
-<a class=@(isActive?"btn btn-light":"btn btn-light disabled") asp-controller="Button" asp-action="SetStop">Stämpla ut!</a>
+@foreach(var time in Model)
+{
+    @if(time.Stop == null)
+    {
+        isActive = true;
+    }
+    else
+    {
+        isActive = false;
+    }
+    <div class="row">
+        <div style="color: green">
+            @time.Start
+        </div>
+        <div style="color: red">
+            @time.Stop
+        </div>
+        @*<div>
+                @time.Span
+            </div>*@
+    </div>
+}
+<br />
+<div>
+    <a class=@(isActive?"loop-button disabled":"loop-button") asp-controller="Button" asp-action="SetStart">Start</a>
+    <a class=@(isActive?"loop-button":"loop-button disabled") asp-controller="Button" asp-action="SetStop">Stop</a>
+</div>
+<br />
+<div>
+    <button class="loop-button">Start</button>
+    <button class="loop-button">Stop</button>
+</div>
+
+
 
