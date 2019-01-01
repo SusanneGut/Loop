@@ -61,60 +61,9 @@ body {
   text-decoration: none;
 }
 .loop-create .loop-button:focus {
-  color: #00ff00;
-  background-color: #333333;
+  border: 1px solid white;
   outline: 0;
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
-}
-.loop-blue-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  margin: 0;
-  background-color: #606060;
-  border-top: 40px solid white;
-  box-shadow: 0 0 3rem #0077d9;
-}
-.loop-red-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  margin: 0;
-  background-color: #606060;
-  border-top: 40px solid white;
-  box-shadow: 0 0 3rem #d50000;
-}
-.loop-purple-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  margin: 0;
-  background-color: #606060;
-  border-top: 40px solid white;
-  box-shadow: 0 0 3rem #8b40ac;
-}
-.loop-green-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  margin: 0;
-  background-color: #606060;
-  border-top: 40px solid white;
-  box-shadow: 0 0 3rem #008a0a;
-}
-.loop-grey-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  margin: 0;
-  background-color: #606060;
-  border-top: 40px solid white;
-  box-shadow: 0 0 3rem #949494;
 }
 .loop-button {
   background-color: #eaeaea;
@@ -140,8 +89,7 @@ body {
   text-decoration: none;
 }
 .loop-button:focus {
-  color: #00ff00;
-  background-color: #333333;
+  border: 1px solid white;
   outline: 0;
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
 }
@@ -200,6 +148,7 @@ section {
   cursor: pointer;
 }
 .loop-start:focus {
+  opacity: 0.7;
   outline: 0 white;
 }
 .loop-start-ongoing {
@@ -251,5 +200,6 @@ section {
   cursor: pointer;
 }
 .loop-stop:focus {
+  opacity: 0.25;
   outline: 0 white;
 }

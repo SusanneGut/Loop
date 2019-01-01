@@ -25,27 +25,27 @@ namespace Loop.Models
                 {
                     Start = o.Start,
                     Stop = o.Stop,
-					//Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
-		})
+                    //Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
+                })
                 .ToArrayAsync();
-		}
+        }
 
-		//public async Task<ButtonIndexVM> GetTimeByProject(int id)
-		//{
-		//	return await context
-		//		.Timestamp
-		//		.Select(o=> new ButtonIndexVM
-		//		{
-		//			ActivityName = o.Activity.ActivityName,
-		//			ActivityId = o.Id,
-		//			Start = o.Start,
-		//			Stop = o.Stop
-		//		})
-		//		.SingleOrDefaultAsync(e => e.ActivityId == id);
-		//}
+        //public async Task<ButtonIndexVM> GetTimeByProject(int id)
+        //{
+        //	return await context
+        //		.Timestamp
+        //		.Select(o=> new ButtonIndexVM
+        //		{
+        //			ActivityName = o.Activity.ActivityName,
+        //			ActivityId = o.Id,
+        //			Start = o.Start,
+        //			Stop = o.Stop
+        //		})
+        //		.SingleOrDefaultAsync(e => e.ActivityId == id);
+        //}
 
 
-        public async Task SetStart(string time, int id)
+        public async Task SetStart(string time, MemberActivitiesVM activity)
         {
             if(context.Timestamp.Count() > 0)
             {
@@ -55,16 +55,16 @@ namespace Loop.Models
 
                 if(lastPost.Stop != null)
                 {
-					await context
-						.Timestamp
-						.AddAsync(new Timestamp
-						{
-							Start = time,
-							ActivityId = id
+                    await context
+                        .Timestamp
+                        .AddAsync(new Timestamp
+                        {
+                            Start = time,
+                            ActivityId = activity.Id
 
-						});
-					
-					await context.SaveChangesAsync();
+                        });
+
+                    await context.SaveChangesAsync();
                 }
             }
             else
@@ -73,7 +73,8 @@ namespace Loop.Models
                     .Timestamp
                     .AddAsync(new Timestamp
                     {
-                        Start = time
+                        Start = time,
+                        ActivityId = activity.Id
                     });
                 await context.SaveChangesAsync();
             }

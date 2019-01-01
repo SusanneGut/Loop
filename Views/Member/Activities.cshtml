@@ -11,7 +11,7 @@
 {
 <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
     <label class="col-md-2">@activity.ActivityName</label>
-    <input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />
+    @*<input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />*@
     <button class="btn-primary btn-sm">Start</button>
     <a asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
 

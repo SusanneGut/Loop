@@ -62,31 +62,6 @@ body {
     }
 }
 
-.loop-blue-nav {
-    .loop-nav;
-    box-shadow: 0 0 3rem @blue;
-}
-
-.loop-red-nav {
-    .loop-nav;
-    box-shadow: 0 0 3rem @red;
-}
-
-.loop-purple-nav {
-    .loop-nav;
-    box-shadow: 0 0 3rem @purple;
-}
-
-.loop-green-nav {
-    .loop-nav;
-    box-shadow: 0 0 3rem @green;
-}
-
-.loop-grey-nav {
-    .loop-nav;
-    box-shadow: 0 0 3rem @grey;
-}
-
 .loop-button {
     background-color: @lightgrey;
     border: 1px solid @grey;
@@ -112,8 +87,7 @@ body {
     }
 
     &:focus {
-        color: @dataGreen;
-        background-color: @dataBg;
+        border: 1px solid white;
         outline: 0;
         box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
     }
@@ -181,6 +155,7 @@ section {
     }
 
     &:focus {
+        opacity: .7;
         outline: 0 white;
     }
 }
@@ -229,6 +204,7 @@ section {
     }
 
     &:focus {
+        opacity: .25;
         outline: 0 white;
     }
 }

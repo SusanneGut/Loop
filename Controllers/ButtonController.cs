@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Loop.Models;
+using Loop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loop.Controllers
@@ -22,17 +23,17 @@ namespace Loop.Controllers
             return View(await service.GetAllTimes());
         }
 
-		//[HttpGet]
-		//[Route("/member/activity/{Id}")]
+        //[HttpGet]
+        //[Route("/member/activity/{Id}")]
 
-		//public async Task<IActionResult> Activity(int Id)
-		//{
-		//	return View(await service.GetTimeByProject(Id));
-		//}
+        //public async Task<IActionResult> Activity(int Id)
+        //{
+        //	return View(await service.GetTimeByProject(Id));
+        //}
 
-		public async Task<IActionResult> SetStart(int id)
+        public async Task<IActionResult> SetStart(MemberActivitiesVM activity)
         {
-            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(),id);
+            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), activity);
             //await service.SetStart(DateTime.Now.ToString());
             return RedirectToAction(nameof(Index));
         }
