@@ -6,7 +6,6 @@
     bool isActive = false;
 }
 
-
 @foreach(var time in Model)
 {
     @if(time.Stop == null)
@@ -17,7 +16,20 @@
     {
         isActive = false;
     }
-    <div class="row">
+}
+
+<div class="loop-loop">
+    <form asp-controller="Button" asp-action="SetStart">
+        <button class=@(isActive?"loop-start-ongoing disabled":"loop-start")>start</button>
+    </form>
+    <form asp-controller="Button" asp-action="SetStop">
+        <button class=@(isActive?"loop-stop":"loop-stop-inactive disabled")>stop</button>
+    </form>
+</div>
+
+@foreach(var time in Model)
+{
+    <div class="test">
         <div style="color: green">
             @time.Start
         </div>
@@ -29,16 +41,3 @@
             </div>*@
     </div>
 }
-<br />
-<div>
-    <a class=@(isActive?"loop-button disabled":"loop-button") asp-controller="Button" asp-action="SetStart">Start</a>
-    <a class=@(isActive?"loop-button":"loop-button disabled") asp-controller="Button" asp-action="SetStop">Stop</a>
-</div>
-<br />
-<div>
-    <button class="loop-button">Start</button>
-    <button class="loop-button">Stop</button>
-</div>
-
-
-

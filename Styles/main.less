@@ -9,7 +9,9 @@
 @dataBg: #333333;
 @dataGreen: #00ff00;
 @dataFont: monospace;
-
+@loopButtonSize: 18rem;
+@loopButtonFontSize: 1.4rem;
+@loopButtonBorder: 10px;
 
 body {
     font-family: 'Varela Round', sans-serif;
@@ -21,10 +23,10 @@ body {
 }
 
 .loop-color {
-    padding: 0;
+    /*padding: 0;
     margin: 0;
     height: 0;
-    width: 100vh;
+    width: 100vh;*/
     box-shadow: 0 0 3rem @green
 }
 
@@ -32,11 +34,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     height: 100px;
     margin: 0;
     background-color: @darkgrey;
-    padding: 10px;
     border-top: 40px solid white;
 }
 
@@ -96,7 +96,7 @@ body {
     font-size: 0.7rem;
     letter-spacing: 0.05rem;
     margin: 5px 0;
-    min-width: 200px;
+    min-width: 222px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -144,5 +144,91 @@ section {
         background-color: @dataBg;
         outline: 0;
         box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
+    }
+}
+
+.test {
+    width: 60%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loop-loop {
+    width: 60%;
+    height: 80vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loop-start {
+    background-color: @green;
+    border: 0;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: @loopButtonFontSize;
+    height: @loopButtonSize;
+    text-transform: uppercase;
+    width: @loopButtonSize;
+    transition: 0.2s;
+
+    &:hover {
+        border: 1px solid white;
+        box-shadow: 0 0 2rem rgba(0,0,0,0.5);
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: 0 white;
+    }
+}
+
+.loop-start-ongoing {
+    opacity: .7;
+    animation: spinStart 2s linear infinite;
+    background-color: @green;
+    border-top: @loopButtonBorder solid #ffffff;
+    border-right: @loopButtonBorder solid transparent;
+    border-bottom: @loopButtonBorder solid #ffffff;
+    border-left: @loopButtonBorder solid transparent;
+    border-radius: 50%;
+    color: transparent;
+    height: @loopButtonSize;
+    width: @loopButtonSize;
+}
+
+@keyframes spinStart {
+    100% {
+        transform: rotate(359deg)
+    }
+}
+
+.loop-stop-inactive {
+    opacity: .25;
+    background-color: @red;
+    border: 0;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: @loopButtonFontSize;
+    height: @loopButtonSize;
+    text-transform: uppercase;
+    width: @loopButtonSize;
+    transition: .2s;
+}
+
+.loop-stop {
+    .loop-stop-inactive;
+    opacity: 1;
+
+    &:hover {
+        border: 1px solid white;
+        box-shadow: 0 0 2rem rgba(0,0,0,0.5);
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: 0 white;
     }
 }

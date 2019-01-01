@@ -10,9 +10,9 @@
     <h1>@ViewBag.Title</h1>
     <form asp-controller="Member" asp-action="create">
         <div>
-            <label asp-for="ActivityName"></label>
-            <input class="loop-form-input" asp-for="ActivityName" />
-            <span asp-validation-for="ActivityName"></span>
+            @*<label asp-for="ActivityName"></label>*@
+            <input class="loop-form-input" asp-for="ActivityName" placeholder="Activity name"/>
+            <span class="loop-error" asp-validation-for="ActivityName"></span>
         </div>
         <br />
         <div>
