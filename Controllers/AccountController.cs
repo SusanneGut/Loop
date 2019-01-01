@@ -36,7 +36,7 @@ namespace Loop.Controllers
         }
 
         [HttpPost]
-        [Route("logIn")]
+        [Route("login")]
         public async Task<IActionResult> Login(AccountLoginVM viewModel)
         {
             if(!ModelState.IsValid)
@@ -74,6 +74,11 @@ namespace Loop.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-
-    }
+		[HttpPost]
+		public async Task<IActionResult> Logout()
+		{
+			await service.LogOut();
+			return RedirectToAction(nameof(Login));
+		}
+	}
 };

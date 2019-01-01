@@ -23,7 +23,9 @@ namespace Loop.Models.ViewModels
         [DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		
+		[Display(Name = "Confirm Password")]
+		[DataType(DataType.Password), Compare(nameof(Password))]
+		public string ConfirmPassword { get; set; }
 
 	}
 }

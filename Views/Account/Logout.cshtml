@@ -1,0 +1,11 @@
+﻿@model AccountLoginVM
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Logout";
+}
+
+
+<h1>Logout</h1>
+<form class="form-group" asp-controller="Account" asp-action="LogOut">
+    <input class="loop-button" type="submit" value="Logout" />
+</form>
