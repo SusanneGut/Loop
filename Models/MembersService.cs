@@ -54,7 +54,7 @@ namespace Loop.Models
 				{
 					ActivityName = o.ActivityName,
 					ActivityId = o.Id,
-
+					
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}

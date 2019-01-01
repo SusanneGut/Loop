@@ -19,6 +19,7 @@ namespace Loop.Models
 
         public async Task<ButtonIndexVM[]> GetAllTimes()
         {
+		
             return await context
                 .Timestamp
                 .Select(o => new ButtonIndexVM
@@ -26,7 +27,7 @@ namespace Loop.Models
                     Start = o.Start,
                     Stop = o.Stop,
 					//Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
-		})
+				})
                 .ToArrayAsync();
 		}
 

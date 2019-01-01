@@ -3,18 +3,21 @@
 <div class="loop-create">
     <h4>Create New Account</h4>
     <form asp-controller="Account" asp-action="Create">
-            @*<label asp-for="Name"></label>*@
-            <input class="loop-form-input" asp-for="Name" placeholder="Username"/>
-            <span class="loop-error" asp-validation-for="Name"></span>
+        @*<label asp-for="Name"></label>*@
+        <input class="loop-form-input" asp-for="Name" placeholder="Username" />
+        <span class="loop-error" asp-validation-for="Name"></span>
         <br />
-            @*<label asp-for="Email"></label>*@
-            <input class="loop-form-input" asp-for="Email" placeholder="Email"/>
-            <span class="loop-error" asp-validation-for="Email"></span>
+        @*<label asp-for="Email"></label>*@
+        <input class="loop-form-input" asp-for="Email" placeholder="Email" />
+        <span class="loop-error" asp-validation-for="Email"></span>
         <br />
-            @*<label asp-for="Password"></label>*@
-            <input class="loop-form-input" asp-for="Password" placeholder="•••••"/>
-            <span class="loop-error" asp-validation-for="Password"></span>
+        @*<label asp-for="Password"></label>*@
+        <input class="loop-form-input" asp-for="Password" placeholder="•••••" />
+        <span class="loop-error" asp-validation-for="Password"></span>
         <br />
+        <input class="loop-form-input" asp-for="ConfirmPassword" placeholder="Confirm Password" />
+        <span class="loop-error" asp-validation-for="ConfirmPassword"></span>
+
         <button class="loop-button">Create</button>
     </form>
 </div>

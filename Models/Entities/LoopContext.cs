@@ -30,7 +30,7 @@ namespace Loop.Models.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LoopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LoopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -49,7 +49,7 @@ namespace Loop.Models.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Activity)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Activity__UserId__14270015");
+                    .HasConstraintName("FK__Activity__UserId__6E01572D");
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
@@ -150,14 +150,17 @@ namespace Loop.Models.Entities
             {
                 entity.Property(e => e.Start)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Stop).HasMaxLength(50);
+                entity.Property(e => e.Stop)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.Timestamp)
                     .HasForeignKey(d => d.ActivityId)
-                    .HasConstraintName("FK__Timestamp__Activ__01142BA1");
+                    .HasConstraintName("FK__Timestamp__Activ__5AEE82B9");
             });
         }
     }
