@@ -10,9 +10,11 @@
 </head>
 <body>
     <div class="loop-nav">
-        <a asp-controller="Account" asp-action="Login">
-            <img src="~/img/LoopLogo.svg" alt="Loop logo" />
-        </a>
+        <div>
+            <a asp-controller="Account" asp-action="Login">
+                <img src="~/img/LoopLogo.svg" alt="Loop logo" />
+            </a>
+        </div>
     </div>
     <div class="loop-container">
         @RenderBody()
