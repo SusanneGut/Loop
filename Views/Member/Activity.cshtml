@@ -4,7 +4,8 @@
     Layout = "_Layout";
 }
 
-<form asp-controller="Member" asp-action="Activity"asp-route-id="@Model.Id">
+<form asp-controller="Member" asp-action="Activity" asp-route-id="@Model.Id">
     <span class="col-md-2">@Model.ActivityName</span>
     <span class="col-md-2">@Model.Start</span>
 </form>
+<a class="loop-button" asp-controller="Member" asp-action="EditActivity">Edit</a>

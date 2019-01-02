@@ -57,15 +57,21 @@ namespace Loop.Controllers
 
 		[HttpGet]
 		[Route("/member/activity/{Id}")]
-
 		public async Task<IActionResult> Activity(int Id)
 		{
 			return View(await service.GetActivityByIdAsync(Id));
 		}
 
+		[HttpPost]
+		[Route("/member/activity/{Id}")]
+		public async Task <IActionResult> EditActivity(ActivityEditVM activity)
+		{
+			await service.EditActivityAsync(activity);
+			return RedirectToAction(nameof(Activity));
+		}
+
 		[HttpGet]
 		[Route("/member/edit/{name}")]
-
         public async Task<IActionResult> Edit(string name)
 		{
 			return View(await service.GetUserByNameAsync(name));

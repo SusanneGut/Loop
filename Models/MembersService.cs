@@ -58,7 +58,6 @@ namespace Loop.Models
 					ActivityName = o.ActivityName,
 					ActivityId = o.Id,
 					
-
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
@@ -89,5 +88,15 @@ namespace Loop.Models
 			await context.SaveChangesAsync();
 
         }
+
+		public async Task EditActivityAsync(ActivityEditVM activity)
+		{
+			var a = await GetActivityByIdAsync(activity.Id);
+
+			a.ActivityName = activity.ActivityName;
+
+			await context.SaveChangesAsync();
+		}
     }
 }
+
