@@ -64,14 +64,9 @@ namespace Loop.Controllers
 		}
 
 		[HttpGet]
-<<<<<<< HEAD
 		[Route("/member/edit/{name}")]
-		public async Task<IActionResult> Edit(string name)
-=======
-        //[Route("/member/edit/{name}")]
 
-        public async Task<IActionResult> Edit(string User)
->>>>>>> 2f9568a12dc5fc966718d112d857d68472dc9fd2
+        public async Task<IActionResult> Edit(string name)
 		{
 			return View(await service.GetUserByNameAsync(name));
 		}
