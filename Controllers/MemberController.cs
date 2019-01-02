@@ -64,7 +64,7 @@ namespace Loop.Controllers
 		}
 
 		[HttpGet]
-		[Route("/member/edit/{name}")]
+		//[Route("/member/edit/{name}")]
 
 		public async Task<IActionResult> Edit(string User)
 		{
