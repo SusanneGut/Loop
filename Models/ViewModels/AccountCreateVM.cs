@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace Loop.Models.ViewModels
 {
-	public class AccountCreateVM
-	{
-		public int Id { get; set; }
+    public class AccountCreateVM
+    {
+        public int Id { get; set; }
 
         //[RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         [Required(ErrorMessage = "Enter username")]
-		public string Name { get; set; }
+        public string Name { get; set; }
 
-		[Display(Name = "E-mail")]
-		[Required(ErrorMessage = "Enter E-mail")]
-		[DataType(DataType.EmailAddress)]
-		public string Email { get; set; }
+        [Display(Name = "E-mail")]
+        [Required(ErrorMessage = "Enter E-mail")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter password")]
         [DataType(DataType.Password)]
-		public string Password { get; set; }
+        public string Password { get; set; }
 
-		[Display(Name = "Confirm Password")]
-		[DataType(DataType.Password), Compare(nameof(Password))]
-		public string ConfirmPassword { get; set; }
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password), Compare(nameof(Password))]
+        public string ConfirmPassword { get; set; }
 
-	}
+    }
 }

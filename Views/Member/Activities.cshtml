@@ -26,8 +26,14 @@
 {
     <button onclick="openActivity(@activity.Id)">@activity.ActivityName</button>
     <div id=@activity.Id class="activity" style="display:none">
-    @activity.Id
-
+        <div class="loop-loop">
+            <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
+                <button class="loop-start">start</button>
+            </form>
+            <form asp-controller="Button" asp-action="SetStop" asp-route-id="@activity.Id">
+                <button class="loop-stop">stop</button>
+            </form>
+        </div>
     </div>
 }
 
