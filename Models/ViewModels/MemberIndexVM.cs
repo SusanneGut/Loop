@@ -7,6 +7,7 @@ namespace Loop.Models.ViewModels
 {
     public class MemberIndexVM
     {
-        public string Username { get; set; }
+		public int Id { get; set; }
+		public string Username { get; set; }
     }
 }

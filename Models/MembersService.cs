@@ -13,10 +13,13 @@ namespace Loop.Models
     public class MembersService
     {
         LoopContext context;
+		UserManager<IdentityUser> userManager;
 
-        public MembersService(LoopContext context)
+
+		public MembersService(LoopContext context, UserManager<IdentityUser> userManager)
         {
             this.context = context;
+			this.userManager = userManager;
         }
 
         public async Task AddActivity(MemberCreateVM activity)
@@ -55,6 +58,7 @@ namespace Loop.Models
 					ActivityName = o.ActivityName,
 					ActivityId = o.Id,
 					
+
 				})
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
