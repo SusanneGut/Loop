@@ -72,7 +72,7 @@ namespace Loop.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Edit(AspNetUsers User)
+		public async Task<IActionResult> Edit(MemberEditVM User)
 		{
 			await service.EditAsync(User);
 			return RedirectToAction(nameof(Edit));

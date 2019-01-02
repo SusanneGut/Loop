@@ -20,13 +20,13 @@ namespace Loop.Models
         public async Task<ButtonIndexVM[]> GetAllTimes()
         {
 
-            return await context
-                .Timestamp
-                .Select(o => new ButtonIndexVM
-                {
-                    Start = o.Start,
-                    Stop = o.Stop,
-                    //Span = (DateTime.Parse(o.Stop) - DateTime.Parse(o.Start)).Hours
+			return await context
+				.Timestamp
+				.Select(o => new ButtonIndexVM
+				{
+					Start = o.Start,
+					Stop = o.Stop,
+					Span = Convert.ToDateTime(o.Stop)-Convert.ToDateTime(o.Start)
                 })
                 .ToArrayAsync();
         }

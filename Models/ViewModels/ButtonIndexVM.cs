@@ -21,7 +21,7 @@ namespace Loop.Models.ViewModels
 
 		public string ActivityName { get; set; }
 
-		public int Span { get; set; }
+		public TimeSpan Span { get; set; }
 
 	}
 }

@@ -71,7 +71,8 @@ namespace Loop.Controllers
 
             await service.AddMemberAsync(member);
 
-            return RedirectToAction(nameof(Login));
+			return RedirectToAction(nameof(Login));
+
         }
 
 		[HttpPost]
