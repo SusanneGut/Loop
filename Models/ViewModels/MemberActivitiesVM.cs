@@ -16,5 +16,5 @@ namespace Loop.Models.ViewModels
 		public string Stop { get; set; }
 
 
-	}
+    }
 }

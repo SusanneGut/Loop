@@ -5,18 +5,40 @@
     var submitBtn = "Create new activity";
 }
 
-<h1>@ViewBag.Title</h1>
+<div class="loop-create">
+    <h1>@ViewBag.Title</h1>
+    <a class="loop-button" asp-controller="Member" asp-action="Create">@submitBtn</a>
+</div>
 
-@foreach (var activity in Model)
+@foreach(var activity in Model)
 {
-<form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
-    <label class="col-md-2">@activity.ActivityName</label>
-    @*<input asp-for="@activity.ActivityId" type="hidden" value="@activity.ActivityId" />*@
-    <button class="btn-primary btn-sm">Start</button>
-    <a asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
+    <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
+        <label>@activity.ActivityName</label>
 
-    <span class="col-md-2">@activity.Id</span>
-</form>
+
+        <button class="loop-button">Start</button>
+        <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
+        <span>@activity.Id</span>
+    </form>
 }
 
-<a class="btn btn-primary btn-sm" asp-action="Create">@submitBtn</a>
+@foreach(var activity in Model)
+{
+    <button onclick="openActivity(@activity.Id)">@activity.ActivityName</button>
+    <div id=@activity.Id class="activity" style="display:none">
+    @activity.Id
+
+    </div>
+}
+
+@section scripts{
+    <script>
+        function openActivity(activityId) {
+            var x = document.getElementsByClassName("activity");
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(activityId).style.display = "block";
+        }
+    </script>
+}
