@@ -76,7 +76,7 @@ namespace Loop.Controllers
 		public async Task<IActionResult> Edit(MemberEditVM User)
 		{
 			await service.EditAsync(User);
-			return RedirectToAction(nameof(Edit));
+			return RedirectToAction(nameof(Activities));
 		}
     }
 }
