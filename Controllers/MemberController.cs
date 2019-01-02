@@ -64,14 +64,14 @@ namespace Loop.Controllers
 		}
 
 		[HttpGet]
-		//[Route("/member/edit/{name}")]
-
-		public async Task<IActionResult> Edit(string User)
+		[Route("/member/edit/{name}")]
+		public async Task<IActionResult> Edit(string name)
 		{
-			return View(await service.GetUserByNameAsync(User));
+			return View(await service.GetUserByNameAsync(name));
 		}
 
 		[HttpPost]
+		[Route("/member/edit/{name}")]
 		public async Task<IActionResult> Edit(MemberEditVM User)
 		{
 			await service.EditAsync(User);

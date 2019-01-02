@@ -65,26 +65,26 @@ namespace Loop.Models
 
 
 
-		public async Task<MemberEditVM> GetUserByNameAsync(string UserName)
+		public async Task<MemberEditVM> GetUserByNameAsync(string user)
 		{
+			var identityUser = await userManager.FindByNameAsync(user);
 
-			return await context
-			.Activity
-				.Select(o => new MemberEditVM
-				{
-					Name = o.User.UserName,
-					Email = o.User.Email
-				})
-			   .SingleOrDefaultAsync(e => e.Name == UserName);
+			return new MemberEditVM
+			{
+				Name = identityUser.UserName,
+				Email = identityUser.Email,
+				OldName = identityUser.UserName
+			};
+			
 		}
 
 		public async Task EditAsync(MemberEditVM User)
         {
-			var user = userManager.Users.FirstOrDefault(u => u.UserName == User.Name);
+			var user = await userManager.FindByNameAsync(User.OldName);
 
-		//var user = await GetUserByNameAsync(User.Name);
-			user.UserName = User.Name;
-            user.Email = User.Email;
+			await userManager.SetUserNameAsync(user, User.Name);
+			await userManager.SetEmailAsync(user, User.Email);
+			
             await userManager.UpdateAsync(user);
 			await context.SaveChangesAsync();
 

@@ -1,34 +1,37 @@
 ﻿@model MemberEditVM;
+
 @{
     ViewBag.Title = "Edit member details";
     Layout = "_Layout";
+
 }
 
 
 <div class="card-body">
     <h5>Edit</h5>
-
-        <form asp-controller="Member" asp-action="Edit">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="Name"></label>
-                <div class="col-sm-10">
-                    <input class="form-control" asp-for="Name" />
-                    <span class="font-weight-light text-danger" asp-validation-for="Name"></span>
-                </div>
+    <form asp-controller="Member" asp-action="Edit">
+        @Html.HiddenFor(m => m.OldName)
+       
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" />
+                <span class="font-weight-light text-danger" asp-validation-for="Name"></span>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" asp-for="Email"></label>
-                <div class="col-sm-10">
-                    <input class="form-control" asp-for="Email" />
-                    <span class="font-weight-light text-danger" asp-validation-for="Email"></span>
-                </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Email"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Email" />
+                <span class="font-weight-light text-danger" asp-validation-for="Email"></span>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-10 offset-sm-2">
-                    <button style="min-width: 100px" class="btn btn-primary btn-sm">Edit</button>
-                </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button style="min-width: 100px" class="btn btn-primary btn-sm">Edit</button>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 @section scripts{
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
