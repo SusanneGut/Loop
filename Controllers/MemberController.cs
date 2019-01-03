@@ -57,17 +57,25 @@ namespace Loop.Controllers
 
 		[HttpGet]
 		[Route("/member/activity/{Id}")]
-		public async Task<IActionResult> Activity(int Id)
+		public async Task<IActionResult> Activity(int id)
 		{
-			return View(await service.GetActivityByIdAsync(Id));
+			return View(await service.GetActivityByIdAsync(id));
+		}
+
+		[HttpGet]
+		[Route("/member/editactivity/{Id}")]
+
+		public async Task <IActionResult> EditActivity(int id)
+		{
+			return View(await service.GetActivityEditAsync(id));
 		}
 
 		[HttpPost]
-		[Route("/member/activity/{Id}")]
+		[Route("/member/editactivity/{Id}")]
 		public async Task <IActionResult> EditActivity(ActivityEditVM activity)
 		{
 			await service.EditActivityAsync(activity);
-			return RedirectToAction(nameof(Activity));
+			return RedirectToAction(nameof(Activities));
 		}
 
 		[HttpGet]

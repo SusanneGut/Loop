@@ -62,6 +62,18 @@ namespace Loop.Models
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
 
+		public async Task<ActivityEditVM> GetActivityEditAsync(int id)
+		{
+			return await context
+				.Activity
+				.Select(o => new ActivityEditVM
+				{
+					ActivityName = o.ActivityName,
+					Id = o.Id,
+
+				})
+				.SingleOrDefaultAsync(e => e.Id == id);
+		}
 
 
 		public async Task<MemberEditVM> GetUserByNameAsync(string user)
@@ -89,11 +101,11 @@ namespace Loop.Models
 
         }
 
-		public async Task EditActivityAsync(ActivityEditVM activity)
+		public async Task EditActivityAsync(ActivityEditVM input)
 		{
-			var a = await GetActivityByIdAsync(activity.Id);
+			var a = await context.Activity.FindAsync(input.Id);
 
-			a.ActivityName = activity.ActivityName;
+			a.ActivityName = input.ActivityName;
 
 			await context.SaveChangesAsync();
 		}

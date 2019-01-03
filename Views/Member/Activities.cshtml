@@ -12,14 +12,16 @@
 
 @foreach(var activity in Model)
 {
-    <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
-        <label>@activity.ActivityName</label>
+<form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
+    <label>@activity.ActivityName</label>
 
 
-        <button class="loop-button">Start</button>
-        <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
-        <span>@activity.Id</span>
-    </form>
+    <button class="loop-button">Start</button>
+    <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
+    <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.Id">Edit @activity.ActivityName</a>
+
+    <span>@activity.Id</span>
+</form>
 }
 
 @foreach(var activity in Model)
