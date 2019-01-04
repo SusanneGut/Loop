@@ -20,8 +20,10 @@
         @RenderBody()
     </div>
     @RenderSection("scripts", false)
-    
 
+    <form class="form-group" asp-controller="Account" asp-action="LogOut">
+        <input class="loop-button" type="submit" value="Logout" />
+    </form>
 
 </body>
 </html>
