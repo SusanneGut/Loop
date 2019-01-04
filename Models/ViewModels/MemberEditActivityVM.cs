@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Loop.Models.ViewModels
 {
-	public class ActivityEditVM
+	public class MemberEditActivityVM
 	{
 		public int Id { get; set; }
 		public string ActivityName { get; set; }

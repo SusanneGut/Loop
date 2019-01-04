@@ -18,6 +18,9 @@
     </div>
     <div class="loop-container">
         @RenderBody()
+    <form class="form-group" asp-controller="Account" asp-action="LogOut">
+        <input class="loop-button" type="submit" value="Logout" />
+    </form>
     </div>
     @RenderSection("scripts", false)
 

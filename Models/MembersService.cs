@@ -22,7 +22,7 @@ namespace Loop.Models
 			this.userManager = userManager;
         }
 
-        public async Task AddActivity(MemberCreateVM activity)
+        public async Task AddActivity(MemberCreateActivityVM activity)
         {
             await context
                 .Activity
@@ -62,11 +62,11 @@ namespace Loop.Models
 				.SingleOrDefaultAsync(e => e.ActivityId == Id);
 		}
 
-		public async Task<ActivityEditVM> GetActivityEditAsync(int id)
+		public async Task<MemberEditActivityVM> GetActivityEditAsync(int id)
 		{
 			return await context
 				.Activity
-				.Select(o => new ActivityEditVM
+				.Select(o => new MemberEditActivityVM
 				{
 					ActivityName = o.ActivityName,
 					Id = o.Id,
@@ -101,7 +101,7 @@ namespace Loop.Models
 
         }
 
-		public async Task EditActivityAsync(ActivityEditVM input)
+		public async Task EditActivityAsync(MemberEditActivityVM input)
 		{
 			var a = await context.Activity.FindAsync(input.Id);
 

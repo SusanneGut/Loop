@@ -17,11 +17,20 @@ namespace Loop.Controllers
         {
             this.service = service;
         }
+		[HttpGet]
+		public IActionResult Details()
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(nameof(Login));
+			}
+			return View(new AccountDetailsVM { UserName = User.Identity.Name });
+		}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+		//public IActionResult Index()
+  //      {
+  //          return View();
+  //      }
 
         [HttpGet]
         [Route("")]
@@ -42,21 +51,18 @@ namespace Loop.Controllers
             if(!ModelState.IsValid)
                 return View(viewModel);
 
-            // Check if credentials is valid (and set auth cookie)
-            if(!await service.TryLoginAsync(viewModel))
+			if (!await service.TryLoginAsync(viewModel))
             {
-                // Show login error
-                ModelState.AddModelError(nameof(AccountLoginVM.Username), "Invalid credentials");
+                ModelState.AddModelError(nameof(AccountLoginVM.Username), "Wrong username or password");
                 return View(viewModel);
             }
 
-            //Redirect user
-
             if(string.IsNullOrWhiteSpace(viewModel.ReturnUrl))
-                return RedirectToAction(nameof(MemberController.Index), "member");
+                return RedirectToAction(nameof(MemberController.Activities), "member");
             else
                 return Redirect(viewModel.ReturnUrl);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -67,7 +73,7 @@ namespace Loop.Controllers
         public async Task<IActionResult> Create(AccountCreateVM member)
         {
             if(!ModelState.IsValid)
-                return View(nameof(Index));
+                return View(nameof(Login));
 
             await service.AddMemberAsync(member);
 

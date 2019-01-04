@@ -1,4 +1,4 @@
-﻿@model MemberIndexVM
+﻿@*@model MemberIndexVM
 @{
     Layout = "_Layout";
     ViewBag.Title = "Members";
@@ -9,9 +9,9 @@
     <p>
         Welcome member - you are logged in as: @Model.Username
     </p>
-    <a class="loop-button" asp-action="Create">@submitBtn</a>
+    <a class="loop-button" asp-action="CreateActivity">@submitBtn</a>
     <br />
     <a class="loop-button" asp-controller="Member" asp-action="Activities">Visa aktiviteter</a>
     <br />
-    <a class="loop-button" asp-controller="Member" asp-action="Edit">Edit</a>
-</div>
+    <a class="loop-button" asp-controller="Member" asp-action="Edit">Edit</a>*@
+@*</div>*@

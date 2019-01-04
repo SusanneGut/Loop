@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Loop.Models.ViewModels
 {
     //Vymodell för Activity
-    public class MemberCreateVM
+    public class MemberCreateActivityVM
     {
         [Display(Name = "Activity name")]
         [Required(ErrorMessage = "Please write the name of activity.")]

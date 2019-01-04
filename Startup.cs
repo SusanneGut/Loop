@@ -38,7 +38,7 @@ namespace Loop
             // Only needed if login path shoudn't be "/Account/Login" 
             services.ConfigureApplicationCookie(o => o.LoginPath = "/LogIn");
 
-            services.AddTransient<GuestsService>();
+            //services.AddTransient<GuestsService>();
             services.AddTransient<AccountService>();
             services.AddTransient<MembersService>();
             services.AddTransient<ButtonService>();

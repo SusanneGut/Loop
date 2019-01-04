@@ -1,4 +1,4 @@
-﻿@model MemberCreateVM
+﻿@model MemberCreateActivityVM
 @{
     ViewBag.Title = "Create new activity";
     Layout = "_Layout";
@@ -8,7 +8,7 @@
 
 <div class="loop-create">
     <h1>@ViewBag.Title</h1>
-    <form asp-controller="Member" asp-action="create">
+    <form asp-controller="Member" asp-action="CreateActivity">
         <div>
             @*<label asp-for="ActivityName"></label>*@
             <input class="loop-form-input" asp-for="ActivityName" placeholder="Activity name"/>

@@ -21,25 +21,25 @@ namespace Loop.Controllers
             this.service = service;
         }
 
-        [HttpGet]
-        [Route("Member")]
-        public IActionResult Index()
-        {
-            if(!ModelState.IsValid)
-            {
-                return View(nameof(Index));
-            }
-            return View(new MemberIndexVM { Username = User.Identity.Name });
-        }
+        //[HttpGet]
+        //[Route("Member")]
+        //public IActionResult Index()
+        //{
+        //    if(!ModelState.IsValid)
+        //    {
+        //        return View(nameof(Index));
+        //    }
+        //    return View(new MemberIndexVM { Username = User.Identity.Name });
+        //}
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateActivity()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(MemberCreateVM activity)
+        public async Task<IActionResult> CreateActivity(MemberCreateActivityVM activity)
         {
             if(!ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace Loop.Controllers
 
 		[HttpPost]
 		[Route("/member/editactivity/{Id}")]
-		public async Task <IActionResult> EditActivity(ActivityEditVM activity)
+		public async Task <IActionResult> EditActivity(MemberEditActivityVM activity)
 		{
 			await service.EditActivityAsync(activity);
 			return RedirectToAction(nameof(Activities));
