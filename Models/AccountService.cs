@@ -43,12 +43,12 @@ namespace Loop.Models
 
 		public async Task AddMemberAsync(AccountCreateVM member)
 		{
-
 			var user = new IdentityUser { UserName = member.Name, Email = member.Email };
 
 			await userManager.CreateAsync(user,member.Password);
 			await loopContext.SaveChangesAsync();
 		}
+
 		public async Task<AccountEditUserVM> GetUserByNameAsync(string user)
 		{
 			var identityUser = await userManager.FindByNameAsync(user);
@@ -73,6 +73,7 @@ namespace Loop.Models
 			await loopContext.SaveChangesAsync();
 
 		}
+
 		public async Task LogOut()
 		{
 			 await signInManager.SignOutAsync();

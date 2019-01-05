@@ -10,7 +10,7 @@ namespace Loop.Models.ViewModels
     {
         public int Id { get; set; }
 
-        //[RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
+        [RegularExpression(@"\S", ErrorMessage = "No white space allowed")]
         [Required(ErrorMessage = "Enter username")]
         public string Name { get; set; }
 
