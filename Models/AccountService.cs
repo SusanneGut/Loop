@@ -49,7 +49,30 @@ namespace Loop.Models
 			await userManager.CreateAsync(user,member.Password);
 			await loopContext.SaveChangesAsync();
 		}
+		public async Task<AccountEditUserVM> GetUserByNameAsync(string user)
+		{
+			var identityUser = await userManager.FindByNameAsync(user);
 
+			return new AccountEditUserVM
+			{
+				Name = identityUser.UserName,
+				Email = identityUser.Email,
+				OldName = identityUser.UserName
+			};
+
+		}
+
+		public async Task EditAsync(AccountEditUserVM User)
+		{
+			var user = await userManager.FindByNameAsync(User.OldName);
+
+			await userManager.SetUserNameAsync(user, User.Name);
+			await userManager.SetEmailAsync(user, User.Email);
+
+			await userManager.UpdateAsync(user);
+			await loopContext.SaveChangesAsync();
+
+		}
 		public async Task LogOut()
 		{
 			 await signInManager.SignOutAsync();

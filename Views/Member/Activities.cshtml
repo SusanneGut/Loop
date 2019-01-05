@@ -8,6 +8,8 @@
 <div class="loop-create">
     <h1>@ViewBag.Title</h1>
     <a class="loop-button" asp-controller="Member" asp-action="CreateActivity">@submitBtn</a>
+    <a class="loop-button" asp-controller="Account" asp-action="EditUser">Edit User</a>
+
 </div>
 
 @foreach(var activity in Model)

@@ -78,19 +78,6 @@ namespace Loop.Controllers
 			return RedirectToAction(nameof(Activities));
 		}
 
-		[HttpGet]
-		[Route("/member/edit/{name}")]
-        public async Task<IActionResult> Edit(string name)
-		{
-			return View(await service.GetUserByNameAsync(name));
-		}
-
-		[HttpPost]
-		[Route("/member/edit/{name}")]
-		public async Task<IActionResult> Edit(MemberEditVM User)
-		{
-			await service.EditAsync(User);
-			return RedirectToAction(nameof(Activities));
-		}
+		
     }
 }

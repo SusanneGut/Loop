@@ -76,31 +76,6 @@ namespace Loop.Models
 		}
 
 
-		public async Task<MemberEditVM> GetUserByNameAsync(string user)
-		{
-			var identityUser = await userManager.FindByNameAsync(user);
-
-			return new MemberEditVM
-			{
-				Name = identityUser.UserName,
-				Email = identityUser.Email,
-				OldName = identityUser.UserName
-			};
-			
-		}
-
-		public async Task EditAsync(MemberEditVM User)
-        {
-			var user = await userManager.FindByNameAsync(User.OldName);
-
-			await userManager.SetUserNameAsync(user, User.Name);
-			await userManager.SetEmailAsync(user, User.Email);
-			
-            await userManager.UpdateAsync(user);
-			await context.SaveChangesAsync();
-
-        }
-
 		public async Task EditActivityAsync(MemberEditActivityVM input)
 		{
 			var a = await context.Activity.FindAsync(input.Id);

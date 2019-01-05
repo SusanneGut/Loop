@@ -87,5 +87,20 @@ namespace Loop.Controllers
 			await service.LogOut();
 			return RedirectToAction(nameof(Login));
 		}
+
+		[HttpGet]
+		[Route("/account/edituser/{name}")]
+		public async Task<IActionResult> EditUser(string name)
+		{
+			return View(await service.GetUserByNameAsync(name));
+		}
+
+		[HttpPost]
+		[Route("/account/edituser/{name}")]
+		public async Task<IActionResult> EditUser(AccountEditUserVM User)
+		{
+			await service.EditAsync(User);
+			return RedirectToAction(nameof(MemberController.Activities),"member");
+		}
 	}
 };
