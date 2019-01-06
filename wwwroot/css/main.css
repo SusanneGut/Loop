@@ -13,8 +13,8 @@ body {
   box-shadow: 0 0 3rem #008a0a;
 }
 .loop-nav {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   height: 100px;
   margin: 0;
@@ -54,6 +54,8 @@ body {
   width: 100%;
 }
 .loop-create .loop-button:hover {
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
   background-color: #f7f7f7;
   color: #606060;
   cursor: pointer;
@@ -82,6 +84,8 @@ body {
   transition: 0.1s ease;
 }
 .loop-button:hover {
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
   background-color: #f7f7f7;
   color: #606060;
   cursor: pointer;

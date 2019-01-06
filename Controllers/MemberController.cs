@@ -55,42 +55,73 @@ namespace Loop.Controllers
             return View(await service.GetAllActivities());
         }
 
-		[HttpGet]
-		[Route("/member/activity/{Id}")]
-		public async Task<IActionResult> Activity(int id)
-		{
-			return View(await service.GetActivityByIdAsync(id));
-		}
+        [HttpGet]
+        [Route("member/activity/{Id}")]
+        public async Task<IActionResult> Activity(int id)
+        {
+            return View(await service.GetActivityById(id));
+        }
 
-		[HttpGet]
-		[Route("/member/editactivity/{Id}")]
+        [HttpGet]
+        [Route("/member/editactivity/{Id}")]
 
-		public async Task <IActionResult> EditActivity(int id)
-		{
-			return View(await service.GetActivityEditAsync(id));
-		}
+        public async Task<IActionResult> EditActivity(int id)
+        {
+            return View(await service.GetActivityEditAsync(id));
+        }
 
-		[HttpPost]
-		[Route("/member/editactivity/{Id}")]
-		public async Task <IActionResult> EditActivity(MemberEditActivityVM activity)
-		{
-			await service.EditActivityAsync(activity);
-			return RedirectToAction(nameof(Activities));
-		}
+        [HttpPost]
+        [Route("/member/editactivity/{Id}")]
+        public async Task<IActionResult> EditActivity(MemberEditActivityVM activity)
+        {
+            await service.EditActivityAsync(activity);
+            return RedirectToAction(nameof(Activities));
+        }
 
-		[HttpGet]
-		[Route("/member/edit/{name}")]
+        [HttpGet]
+        [Route("/member/edit/{name}")]
         public async Task<IActionResult> Edit(string name)
-		{
-			return View(await service.GetUserByNameAsync(name));
-		}
+        {
+            return View(await service.GetUserByNameAsync(name));
+        }
 
-		[HttpPost]
-		[Route("/member/edit/{name}")]
-		public async Task<IActionResult> Edit(MemberEditVM User)
-		{
-			await service.EditAsync(User);
-			return RedirectToAction(nameof(Activities));
-		}
+        [HttpPost]
+        [Route("/member/edit/{name}")]
+        public async Task<IActionResult> Edit(MemberEditVM User)
+        {
+            await service.EditAsync(User);
+            return RedirectToAction(nameof(Activities));
+        }
+
+        [HttpGet]
+        public IActionResult SetStart()
+        {
+            return RedirectToAction(nameof(SetStart));
+        }
+
+        [HttpPost]
+        //[Route("/member/setstart/{id}")]
+        public async Task<IActionResult> SetStart(int id)
+        {
+            //await service.GetActivityById(id);
+            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), id);
+            return RedirectToAction(nameof(Activities));
+        }
+
+        //[HttpGet]
+        //public IActionResult SetStop()
+        //{
+        //    return Content("menvaf...");
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> SetStop(int id)
+        {
+            await service.SetStop(DateTime.Now.ToUniversalTime().ToString(), id);
+            //await service.SetStart(DateTime.Now.ToString());
+            return RedirectToAction(nameof(Activities));
+        }
+
+
     }
 }

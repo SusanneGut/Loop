@@ -1,4 +1,4 @@
-﻿@model AccountLoginVM
+﻿@model AccountLoginVM;
 @{
     Layout = "_Layout";
     ViewBag.Title = "Login";
@@ -8,12 +8,10 @@
 
     <h1>Login</h1>
 
-    <form class="form-group" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-        @*<label asp-for="Username"></label>*@
+    <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
         <input class="loop-form-input" asp-for="Username" placeholder="Username" />
         <span class="loop-error" asp-validation-for="Username"></span>
         <br />
-        @*<label asp-for="Password"></label>*@
         <input class="loop-form-input" asp-for="Password" placeholder="•••••" />
         <span class="loop-error" asp-validation-for="Password"></span>
         <br />
@@ -22,9 +20,6 @@
     <hr />
 
     <a class="loop-button" asp-controller="Account" asp-action="Create">Create Account</a>
-    <br />
-    <br />
-    <a class="loop-button" asp-controller="Button" asp-action="Index">LOOP</a>
     <br />
     <br />
     <a class="loop-button" asp-controller="Member" asp-action="Activities">activities</a>

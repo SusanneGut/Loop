@@ -41,7 +41,7 @@ namespace Loop
             //services.AddTransient<GuestsService>();
             services.AddTransient<AccountService>();
             services.AddTransient<MembersService>();
-            services.AddTransient<ButtonService>();
+            //services.AddTransient<ButtonService>();
             services.AddMvc();
             services.AddSession();
 
