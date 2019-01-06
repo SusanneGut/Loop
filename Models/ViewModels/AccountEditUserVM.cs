@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Loop.Models.ViewModels
 {
-	public class MemberEditVM
+	public class AccountEditUserVM
 	{
 		public int Id { get; set; }
 

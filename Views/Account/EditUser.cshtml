@@ -1,4 +1,4 @@
-﻿@model MemberEditVM;
+﻿@model AccountEditUserVM;
 
 @{
     ViewBag.Title = "Edit member details";
@@ -9,7 +9,7 @@
 
 <div class="card-body">
     <h5>Edit</h5>
-    <form asp-controller="Member" asp-action="Edit">
+    <form asp-controller="Account" asp-action="Edit" asp-route-name="@Model.Name">
         @Html.HiddenFor(m => m.OldName)
        
         <div class="form-group row">
