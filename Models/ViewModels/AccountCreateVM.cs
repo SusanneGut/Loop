@@ -4,15 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Loop.Models.ViewModels
 {
     public class AccountCreateVM
     {
         public int Id { get; set; }
 
-        [RegularExpression(@"\S", ErrorMessage = "No white space allowed")]
-        [Required(ErrorMessage = "Enter username")]
-        public string Name { get; set; }
+		[Required(ErrorMessage = "Enter username")]
+		[RegularExpression(@"[^\s]", ErrorMessage = "No white space allowed")]
+		public string Name { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Enter E-mail")]
