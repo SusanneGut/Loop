@@ -53,7 +53,7 @@ namespace Loop.Controllers
 
 			if (!await service.TryLoginAsync(viewModel))
             {
-                ModelState.AddModelError(nameof(AccountLoginVM.Username), "Wrong username or password");
+                ModelState.AddModelError(nameof(AccountLoginVM.UserName), "Wrong username or password");
                 return View(viewModel);
             }
 
@@ -77,7 +77,7 @@ namespace Loop.Controllers
 
 			if (!await service.AddMemberAsync(viewModel))
 			{
-				ModelState.AddModelError(nameof(AccountCreateVM.Name), "Oups, something went wrong!");
+				ModelState.AddModelError(nameof(AccountCreateVM.UserName), "Oups, something went wrong, try another username!");
 				return View(viewModel);
 			}
 			

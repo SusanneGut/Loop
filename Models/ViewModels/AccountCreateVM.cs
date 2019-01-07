@@ -12,7 +12,7 @@ namespace Loop.Models.ViewModels
         public int Id { get; set; }
 
 		[Required(ErrorMessage = "Enter username")]
-		public string Name { get; set; }
+		public string UserName { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Enter E-mail")]
@@ -26,6 +26,7 @@ namespace Loop.Models.ViewModels
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+
 
     }
 }

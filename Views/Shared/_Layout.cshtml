@@ -9,6 +9,7 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+
     <div class="loop-nav">
         <div>
             <a asp-controller="Account" asp-action="Login">
@@ -19,9 +20,9 @@
     <div class="loop-container">
 
         @RenderBody()
-    <form class="loop-logout-container" asp-controller="Account" asp-action="LogOut">
-        <input class="loop-button" type="submit" value="Logout" />
-    </form>
+        <form class="loop-logout-container" asp-controller="Account" asp-action="LogOut">
+            <input class="loop-button" type="submit" value="Logout" />
+        </form>
     </div>
     @RenderSection("scripts", false)
 

@@ -1,5 +1,6 @@
 ﻿using Loop.Models.Entities;
 using Loop.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
@@ -29,6 +30,12 @@ namespace Loop.Models
             this.signInManager = signInManager;
         }
 
+		//private async Task <IdentityUser> GetCurrentUserAsync()
+		//{
+		//	return await userManager.GetUserNameAsync();
+			
+		//}
+
 		public async Task<bool> TryLoginAsync(AccountLoginVM viewModel)
 		{
 			//// Create DB schema (first time)
@@ -37,13 +44,13 @@ namespace Loop.Models
 			//// Create a hard coded user (first time)
 			//var createResult = await userManager.CreateAsync(new IdentityUser("user"), "Password_123");
 
-			var loginResult = await signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, false);
+			var loginResult = await signInManager.PasswordSignInAsync(viewModel.UserName, viewModel.Password, false, false);
 			return loginResult.Succeeded;
 		}
 
 		public async Task <bool> AddMemberAsync(AccountCreateVM member)
 		{
-			var user = new IdentityUser { UserName = member.Name, Email = member.Email };
+			var user = new IdentityUser { UserName = member.UserName, Email = member.Email };
 
 			var created = await userManager.CreateAsync(user,member.Password);
 			
@@ -58,7 +65,7 @@ namespace Loop.Models
 
 			return new AccountEditUserVM
 			{
-				Name = identityUser.UserName,
+				UserName = identityUser.UserName,
 				Email = identityUser.Email,
 				OldName = identityUser.UserName
 			};
@@ -69,12 +76,11 @@ namespace Loop.Models
 		{
 			var user = await userManager.FindByNameAsync(User.OldName);
 
-			await userManager.SetUserNameAsync(user, User.Name);
+			await userManager.SetUserNameAsync(user, User.UserName);
 			await userManager.SetEmailAsync(user, User.Email);
 
 			await userManager.UpdateAsync(user);
 			await loopContext.SaveChangesAsync();
-
 
 		}
 
