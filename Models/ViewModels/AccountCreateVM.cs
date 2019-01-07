@@ -12,8 +12,7 @@ namespace Loop.Models.ViewModels
         public int Id { get; set; }
 
 		[Required(ErrorMessage = "Enter username")]
-        [RegularExpression(@"[^-\s]", ErrorMessage = "No white space allowed")]
-        public string Name { get; set; }
+		public string Name { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Enter E-mail")]

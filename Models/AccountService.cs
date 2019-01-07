@@ -41,12 +41,15 @@ namespace Loop.Models
 			return loginResult.Succeeded;
 		}
 
-		public async Task AddMemberAsync(AccountCreateVM member)
+		public async Task <bool> AddMemberAsync(AccountCreateVM member)
 		{
 			var user = new IdentityUser { UserName = member.Name, Email = member.Email };
 
-			await userManager.CreateAsync(user,member.Password);
+			var created = await userManager.CreateAsync(user,member.Password);
+			
 			await loopContext.SaveChangesAsync();
+
+			return created.Succeeded;
 		}
 
 		public async Task<AccountEditUserVM> GetUserByNameAsync(string user)
@@ -71,6 +74,7 @@ namespace Loop.Models
 
 			await userManager.UpdateAsync(user);
 			await loopContext.SaveChangesAsync();
+
 
 		}
 

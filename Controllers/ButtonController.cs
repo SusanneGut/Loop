@@ -4,12 +4,10 @@
 //using System.Threading.Tasks;
 //using Loop.Models;
 //using Loop.Models.ViewModels;
-//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
 
 //namespace Loop.Controllers
 //{
-//    [Authorize]
 //    public class ButtonController : Controller
 //    {
 //        ButtonService service;

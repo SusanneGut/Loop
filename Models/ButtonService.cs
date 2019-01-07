@@ -61,7 +61,7 @@
 //                        .AddAsync(new Timestamp
 //                        {
 //                            Start = time,
-//                            ActivityId = activity
+//                            ActivityId = activity.Id
 
 //                        });
 
