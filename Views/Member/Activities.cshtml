@@ -5,7 +5,7 @@
 }
 
 
-@foreach(var activity in Model.Activities)
+@foreach (var activity in Model.Activities)
 {
 
     <div class="loop-create">
@@ -44,6 +44,7 @@
         </div>
     </form>
 </div>
+<a class="loop-button" asp-controller="Account" asp-action="EditUser">Edit User</a>
 @section scripts{
 
     <script>

@@ -69,17 +69,33 @@ namespace Loop.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(AccountCreateVM member)
-        {
-            if(!ModelState.IsValid)
-                return View(nameof(Login));
+		[HttpPost]
+		public async Task<IActionResult> Create(AccountCreateVM viewModel)
+		{
+			if (!ModelState.IsValid)
+				return View(viewModel);
 
-            await service.AddMemberAsync(member);
+			if (!await service.AddMemberAsync(viewModel))
+			{
+				ModelState.AddModelError(nameof(AccountCreateVM.Name), "Oups, something went wrong!");
+				return View(viewModel);
+			}
+			
+			return RedirectToAction(nameof(MemberController.Activities), "member");
 
-			return RedirectToAction(nameof(MemberController.Activities),"member");
+		}
 
-        }
+		//      [HttpPost]
+		//      public async Task<IActionResult> Create(AccountCreateVM member)
+		//      {
+		//          if(!ModelState.IsValid)
+		//              return View(nameof(Login));
+
+		//          await service.AddMemberAsync(member);
+
+		//	return RedirectToAction(nameof(MemberController.Activities),"member");
+
+		//}
 
 		[HttpPost]
 		public async Task<IActionResult> Logout()
@@ -100,6 +116,7 @@ namespace Loop.Controllers
 		public async Task<IActionResult> EditUser(AccountEditUserVM User)
 		{
 			await service.EditAsync(User);
+
 			return RedirectToAction(nameof(MemberController.Activities),"member");
 		}
 	}
