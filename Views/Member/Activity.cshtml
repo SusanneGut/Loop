@@ -4,15 +4,19 @@
     Layout = "_Layout";
 }
 
-<h3>@Model.ActivityName</h3>
+<div class="loop-create">
 
-@if(Model.IsActive == true)
-{
-    <p>@Model.ActivityName is active. The clock is ticking.</p>
-}
-else
-{
-    <p>@Model.ActivityName is not active...</p>
-}
 
-<a class="loop-button" asp-controller="Member" asp-action="Activities">activities</a>
+    <h3>@Model.ActivityName</h3>
+
+    @if(Model.IsActive == true)
+    {
+        <p>@Model.ActivityName is active. The clock is ticking.</p>
+    }
+    else
+    {
+        <p>@Model.ActivityName is not active...</p>
+    }
+
+    <a class="loop-button" asp-controller="Member" asp-action="Activities">activities</a>
+</div>

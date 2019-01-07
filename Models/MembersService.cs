@@ -63,16 +63,21 @@ namespace Loop.Models
 
         public async Task<MemberActivityVM> GetActivityById(int id)
         {
+            bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
+
             bool isActive = false;
 
-            var stopStatus = context
-                .Timestamp
-                .Where(o => o.ActivityId == id)
-                .LastOrDefault()
-                .Stop;
+            if(!isEmpty)
+            {
+                var stopStatus = context
+                    .Timestamp
+                    .Where(o => o.ActivityId == id)
+                    .LastOrDefault()
+                    .Stop;
 
-            if(stopStatus == null)
-                isActive = true;
+                if(stopStatus == null)
+                    isActive = true;
+            }
 
             return await context
                 .Activity

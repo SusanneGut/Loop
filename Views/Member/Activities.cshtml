@@ -15,8 +15,10 @@
 
         @activity.IsActive
 
+
         <form asp-controller="Member" asp-action="SetStart" asp-route-id="@activity.ActivityId">
-            <button class="loop-button">start</button>
+            <input id="activityId" value="@activity.ActivityId" type="hidden" />
+            <button class="loop-button" onclick="conLog()">start</button>
         </form>
 
         <form asp-controller="Member" asp-action="SetStop" asp-route-id="@activity.ActivityId">
@@ -43,42 +45,17 @@
     </form>
 </div>
 @section scripts{
-    <script src="~/js/MyJavaScript.js"></script>
+
+    <script>
+        function conLog() {
+            alert("JavaScript: Activity Id: " + $('input#activityId').val());
+        };
+
+    </script>
+
+
+    @*<script src="~/js/MyJavaScript.js"></script>*@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
 }
-
-
-@*<a class="loop-button" asp-controller="Member" asp-action="CreateActivity">@submitBtn</a>
-
-    @foreach(var activity in Model)
-    {
-        <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
-            <label>@activity.ActivityName</label>
-
-
-            <button class="loop-button">Start</button>
-            <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.Id">Show @activity.ActivityName</a>
-            <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.Id">Edit @activity.ActivityName</a>
-
-            <span>@activity.Id</span>
-        </form>
-    }
-
-    @foreach(var activity in Model)
-    {
-        <button onclick="openActivity(@activity.Id)">@activity.ActivityName</button>
-        <div id=@activity.Id class="activity" style="display:none">
-            <div class="loop-loop">
-                <form asp-controller="Button" asp-action="SetStart" asp-route-id="@activity.Id">
-                    <button class="loop-start">start</button>
-                </form>
-                <form asp-controller="Button" asp-action="SetStop" asp-route-id="@activity.Id">
-                    <button class="loop-stop">stop</button>
-                </form>
-            </div>
-        </div>
-    }*@
-
-

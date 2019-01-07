@@ -105,21 +105,15 @@ namespace Loop.Controllers
         {
             //await service.GetActivityById(id);
             await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), id);
-            return RedirectToAction(nameof(Activities));
+            return RedirectToAction(nameof(Activity));
         }
-
-        //[HttpGet]
-        //public IActionResult SetStop()
-        //{
-        //    return Content("menvaf...");
-        //}
 
         [HttpPost]
         public async Task<IActionResult> SetStop(int id)
         {
             await service.SetStop(DateTime.Now.ToUniversalTime().ToString(), id);
             //await service.SetStart(DateTime.Now.ToString());
-            return RedirectToAction(nameof(Activities));
+            return RedirectToAction(nameof(Activity));
         }
 
 

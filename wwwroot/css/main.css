@@ -1,6 +1,13 @@
 body {
   font-family: 'Varela Round', sans-serif;
 }
+@media (max-width: 375px) {
+  .loop-logout-container {
+    margin: 0;
+    padding: 0 30px;
+    width: 100%;
+  }
+}
 .loop-error {
   font-size: 0.6rem;
   color: red;
@@ -21,6 +28,12 @@ body {
   background-color: #606060;
   border-top: 40px solid white;
 }
+@media (max-width: 375px) {
+  .loop-nav {
+    border-top: 0;
+    height: 60px;
+  }
+}
 .loop-container {
   height: 100%;
   display: flex;
@@ -35,6 +48,15 @@ body {
   padding: 30px;
   border-radius: 30px;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 375px) {
+  .loop-create {
+    width: 100%;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
+    box-shadow: none;
+  }
 }
 .loop-create .loop-button {
   background-color: #eaeaea;
@@ -52,6 +74,11 @@ body {
   padding: 0.7rem;
   transition: 0.1s ease;
   width: 100%;
+}
+@media (max-width: 375px) {
+  .loop-create .loop-button {
+    min-width: 100%;
+  }
 }
 .loop-create .loop-button:hover {
   box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
@@ -82,6 +109,11 @@ body {
   text-transform: uppercase;
   padding: 0.7rem;
   transition: 0.1s ease;
+}
+@media (max-width: 375px) {
+  .loop-button {
+    min-width: 100%;
+  }
 }
 .loop-button:hover {
   box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);

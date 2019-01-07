@@ -17,6 +17,14 @@ body {
     font-family: 'Varela Round', sans-serif;
 }
 
+.loop-logout-container {
+    @media (max-width: 375px) {
+        margin: 0;
+        padding: 0 30px;
+        width: 100%;
+    }
+}
+
 .loop-error {
     font-size: 0.6rem;
     color: red;
@@ -38,6 +46,11 @@ body {
     margin: 0;
     background-color: @darkgrey;
     border-top: 40px solid white;
+
+    @media (max-width: 375px) {
+        border-top: 0;
+        height: 60px;
+    }
 }
 
 .loop-container {
@@ -55,6 +68,14 @@ body {
     padding: 30px;
     border-radius: 30px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 375px) {
+        width: 100%;
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 30px;
+        box-shadow: none;
+    }
 
     .loop-button {
         .loop-button;
@@ -77,6 +98,10 @@ body {
     text-transform: uppercase;
     padding: 0.7rem;
     transition: 0.1s ease;
+
+    @media (max-width: 375px) {
+        min-width: 100%
+    }
 
     &:hover {
         box-shadow: 0px 0px 1rem rgba(0,0,0, 0.5);
