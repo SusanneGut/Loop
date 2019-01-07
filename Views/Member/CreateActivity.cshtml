@@ -2,22 +2,16 @@
 @{
     ViewBag.Title = "Create new activity";
     Layout = "_Layout";
-    var submitBtn = "Skapa ny aktivitet";
 }
 
 
 <div class="loop-create">
     <h1>@ViewBag.Title</h1>
     <form asp-controller="Member" asp-action="CreateActivity">
-        <div>
-            @*<label asp-for="ActivityName"></label>*@
-            <input class="loop-form-input" asp-for="ActivityName" placeholder="Activity name"/>
-            <span class="loop-error" asp-validation-for="ActivityName"></span>
-        </div>
+        <input class="loop-form-input" asp-for="ActivityName" placeholder="Activity name" />
+        <span class="loop-error" asp-validation-for="ActivityName"></span>
         <br />
-        <div>
-            <button class="loop-button">@submitBtn</button>
-        </div>
+        <button class="loop-button">Create</button>
     </form>
 </div>
 @section scripts{

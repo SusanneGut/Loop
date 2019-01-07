@@ -5,18 +5,17 @@
 }
 
 <div class="loop-create">
-
-
     <h3>@Model.ActivityName</h3>
+</div>
+<div class="loop-loop">
+    <form asp-controller="Member" asp-action="SetStart" asp-route-id="@Model.ActivityId">
+        <button class="@(Model.IsActive?"loop-start-ongoing disabled":"loop-start")">start</button>
+    </form>
+    <form asp-controller="Member" asp-action="SetStop" asp-route-id="@Model.ActivityId">
+        <button class="@(Model.IsActive?"loop-stop":"loop-stop-inactive disabled")">stop</button>
+    </form>
+</div>
 
-    @if(Model.IsActive == true)
-    {
-        <p>@Model.ActivityName is active. The clock is ticking.</p>
-    }
-    else
-    {
-        <p>@Model.ActivityName is not active...</p>
-    }
-
+<div class="loop-mini-container">
     <a class="loop-button" asp-controller="Member" asp-action="Activities">activities</a>
 </div>
