@@ -1,48 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Loop.Models;
-using Loop.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using Loop.Models;
+//using Loop.Models.ViewModels;
+//using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Mvc;
 
-namespace Loop.Controllers
-{
-    public class ButtonController : Controller
-    {
-        ButtonService service;
+//namespace Loop.Controllers
+//{
+//    [Authorize]
+//    public class ButtonController : Controller
+//    {
+//        ButtonService service;
 
-        public ButtonController(ButtonService service)
-        {
-            this.service = service;
-        }
+//        public ButtonController(ButtonService service)
+//        {
+//            this.service = service;
+//        }
 
-        [Route("/Button")]
-        public async Task<IActionResult> Index()
-        {
-            return View(await service.GetAllTimes());
-        }
+//        [Route("/Button")]
+//        public async Task<IActionResult> Index()
+//        {
+//            return View(await service.GetAllTimes());
+//        }
 
-        //[HttpGet]
-        //[Route("/member/activity/{Id}")]
+//        //[HttpGet]
+//        //[Route("/member/activity/{Id}")]
 
-        //public async Task<IActionResult> Activity(int Id)
-        //{
-        //	return View(await service.GetTimeByProject(Id));
-        //}
+//        //public async Task<IActionResult> Activity(int Id)
+//        //{
+//        //	return View(await service.GetTimeByProject(Id));
+//        //}
 
-        public async Task<IActionResult> SetStart(MemberActivitiesVM activity)
-        {
-            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), activity);
-            //await service.SetStart(DateTime.Now.ToString());
-            return RedirectToAction(nameof(Index));
-        }
+//        public async Task<IActionResult> SetStart(MemberActivitiesVM activity)
+//        {
+//            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), activity);
+//            //await service.SetStart(DateTime.Now.ToString());
+//            return RedirectToAction(nameof(Index));
+//        }
 
-        public async Task<IActionResult> SetStop()
-        {
-            await service.SetStop(DateTime.Now.ToUniversalTime().ToString());
-            //await service.SetStart(DateTime.Now.ToString());
-            return RedirectToAction(nameof(Index));
-        }
-    }
-}
+//        public async Task<IActionResult> SetStop()
+//        {
+//            await service.SetStop(DateTime.Now.ToUniversalTime().ToString());
+//            //await service.SetStart(DateTime.Now.ToString());
+//            return RedirectToAction(nameof(Index));
+//        }
+//    }
+//}
