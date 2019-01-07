@@ -2,7 +2,7 @@ body {
   font-family: 'Varela Round', sans-serif;
 }
 @media (max-width: 375px) {
-  .loop-logout-container {
+  .loop-mini-container {
     margin: 0;
     padding: 0 30px;
     width: 100%;
@@ -54,7 +54,7 @@ body {
     width: 100%;
     border-radius: 0;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     box-shadow: none;
   }
 }
@@ -154,6 +154,7 @@ section {
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
 }
 .test {
+  z-index: -1;
   width: 60%;
   height: 2rem;
   display: flex;
@@ -161,11 +162,40 @@ section {
   align-items: center;
 }
 .loop-loop {
-  width: 60%;
-  height: 80vh;
+  width: 65%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 0;
+}
+@media (max-width: 1200px) {
+  .loop-loop {
+    width: 85%;
+  }
+}
+@media (max-width: 900px) {
+  .loop-loop {
+    width: 100%;
+  }
+}
+@media (max-width: 666px) {
+  .loop-loop {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 666px) {
+  .media666 {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .media375 {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
 }
 .loop-start {
   background-color: #008a0a;
@@ -177,6 +207,19 @@ section {
   text-transform: uppercase;
   width: 18rem;
   transition: 0.2s;
+}
+@media (max-width: 666px) {
+  .loop-start {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-start {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
 }
 .loop-start:hover {
   border: 1px solid white;
@@ -200,6 +243,19 @@ section {
   height: 18rem;
   width: 18rem;
 }
+@media (max-width: 666px) {
+  .loop-start-ongoing {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-start-ongoing {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
+}
 @keyframes spinStart {
   100% {
     transform: rotate(359deg);
@@ -217,6 +273,19 @@ section {
   width: 18rem;
   transition: 0.2s;
 }
+@media (max-width: 666px) {
+  .loop-stop-inactive {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-stop-inactive {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
+}
 .loop-stop {
   opacity: 0.25;
   background-color: #d50000;
@@ -229,6 +298,32 @@ section {
   width: 18rem;
   transition: 0.2s;
   opacity: 1;
+}
+@media (max-width: 666px) {
+  .loop-stop {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-stop {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 666px) {
+  .loop-stop {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-stop {
+    height: 9rem;
+    width: 9rem;
+    font-size: 1rem;
+  }
 }
 .loop-stop:hover {
   border: 1px solid white;

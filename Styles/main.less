@@ -17,7 +17,7 @@ body {
     font-family: 'Varela Round', sans-serif;
 }
 
-.loop-logout-container {
+.loop-mini-container {
     @media (max-width: 375px) {
         margin: 0;
         padding: 0 30px;
@@ -73,7 +73,7 @@ body {
         width: 100%;
         border-radius: 0;
         margin-top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 0;
         box-shadow: none;
     }
 
@@ -149,6 +149,7 @@ section {
 }
 
 .test {
+    z-index: -1;
     width: 60%;
     height: 2rem;
     display: flex;
@@ -157,11 +158,39 @@ section {
 }
 
 .loop-loop {
-    width: 60%;
-    height: 80vh;
+    width: 65%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 0;
+
+    @media (max-width: 1200px) {
+        width: 85%
+    }
+
+    @media (max-width: 900px) {
+        width: 100%
+    }
+
+    @media (max-width: 666px) {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}
+
+.media666 {
+    @media (max-width: 666px) {
+        height: @loopButtonSize - 6;
+        width: @loopButtonSize - 6;
+    }
+}
+
+.media375 {
+    @media (max-width: 375px) {
+        height: @loopButtonSize - 9;
+        width: @loopButtonSize - 9;
+        font-size: @loopButtonFontSize - 0.4;
+    }
 }
 
 .loop-start {
@@ -174,6 +203,8 @@ section {
     text-transform: uppercase;
     width: @loopButtonSize;
     transition: 0.2s;
+    .media666;
+    .media375;
 
     &:hover {
         border: 1px solid white;
@@ -199,6 +230,8 @@ section {
     color: transparent;
     height: @loopButtonSize;
     width: @loopButtonSize;
+    .media666;
+    .media375;
 }
 
 @keyframes spinStart {
@@ -218,11 +251,15 @@ section {
     text-transform: uppercase;
     width: @loopButtonSize;
     transition: .2s;
+    .media666;
+    .media375;
 }
 
 .loop-stop {
     .loop-stop-inactive;
     opacity: 1;
+    .media666;
+    .media375;
 
     &:hover {
         border: 1px solid white;

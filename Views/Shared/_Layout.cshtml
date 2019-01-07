@@ -3,6 +3,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
@@ -20,9 +23,15 @@
     <div class="loop-container">
 
         @RenderBody()
+<<<<<<< HEAD
         <form class="loop-logout-container" asp-controller="Account" asp-action="LogOut">
             <input class="loop-button" type="submit" value="Logout" />
         </form>
+=======
+    <form class="loop-mini-container" asp-controller="Account" asp-action="LogOut">
+        <input class="loop-button" type="submit" value="Logout" />
+    </form>
+>>>>>>> e58122beb9d8a2e45ee2959e2541b16d4d4cebf6
     </div>
     @RenderSection("scripts", false)
 

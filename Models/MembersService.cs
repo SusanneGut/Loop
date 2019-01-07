@@ -84,6 +84,7 @@ namespace Loop.Models
                 .Where(i => i.Id == id)
                 .Select(o => new MemberActivityVM
                 {
+                    ActivityId = o.Id,
                     ActivityName = o.ActivityName,
                     IsActive = isActive,
                 })
