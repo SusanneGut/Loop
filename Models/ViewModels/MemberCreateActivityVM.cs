@@ -9,8 +9,8 @@ namespace Loop.Models.ViewModels
     //Vymodell för Activity
     public class MemberCreateActivityVM
     {
-        [Display(Name = "Activity name")]
-        [Required(ErrorMessage = "Please write the name of activity.")]
+        [Display(Prompt = "Activity name")]
+        [Required(ErrorMessage = "Please write a name of the activity.")]
         public string ActivityName { get; set; }
 		public int ActivityId { get; set; }
 	}

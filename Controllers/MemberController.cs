@@ -93,6 +93,19 @@ namespace Loop.Controllers
         //    return RedirectToAction(nameof(Activities));
         //}
 
+
+
+
+        //[Route("Members/SetStart/{id}")]
+        //public async Task<IActionResult> SetStart(int id)
+        //{
+        //    await service.SetStart(DateTime.UtcNow.ToString(), id);
+        //    return RedirectToAction(nameof(Activity));
+        //}
+
+
+
+
         [HttpGet]
         public IActionResult SetStart()
         {
@@ -100,10 +113,8 @@ namespace Loop.Controllers
         }
 
         [HttpPost]
-        //[Route("/member/setstart/{id}")]
         public async Task<IActionResult> SetStart(int id)
         {
-            //await service.GetActivityById(id);
             await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), id);
             return RedirectToAction(nameof(Activity));
         }
@@ -112,10 +123,7 @@ namespace Loop.Controllers
         public async Task<IActionResult> SetStop(int id)
         {
             await service.SetStop(DateTime.Now.ToUniversalTime().ToString(), id);
-            //await service.SetStart(DateTime.Now.ToString());
             return RedirectToAction(nameof(Activity));
         }
-
-
     }
 }

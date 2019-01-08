@@ -1,12 +1,74 @@
 body {
   font-family: 'Varela Round', sans-serif;
 }
+h3 {
+  margin-bottom: 0;
+}
 @media (max-width: 375px) {
   .loop-mini-container {
     margin: 0;
     padding: 0 30px;
     width: 100%;
   }
+}
+.loop-header {
+  text-align: center;
+  width: 300px;
+  margin: 30px;
+  padding: 30px;
+  border-radius: 40px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  width: unset;
+  padding: 10px 30px;
+}
+@media (max-width: 375px) {
+  .loop-header {
+    width: 100%;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: none;
+  }
+}
+.loop-header .loop-button {
+  background-color: #eaeaea;
+  border: 1px solid #949494;
+  /*border-radius: 50px;*/
+  border-radius: 2rem;
+  color: #606060;
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  margin: 5px 0;
+  min-width: 222px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.7rem;
+  transition: 0.1s ease;
+  width: 100%;
+}
+@media (max-width: 375px) {
+  .loop-header .loop-button {
+    min-width: 100%;
+  }
+}
+.loop-header .loop-button:hover {
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
+  background-color: #f7f7f7;
+  color: #606060;
+  cursor: pointer;
+  letter-spacing: 0.2rem;
+  text-decoration: none;
+}
+.loop-header .loop-button:focus {
+  border: 1px solid white;
+  outline: 0;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+.loop-header h3 {
+  text-transform: uppercase;
 }
 .loop-error {
   font-size: 0.6rem;
@@ -19,10 +81,45 @@ body {
     width: 100vh;*/
   box-shadow: 0 0 3rem #008a0a;
 }
+.loop-menu {
+  position: relative;
+  display: inline-block;
+  transition: 0.1s ease;
+}
+.loop-menu:hover .loop-menu-content {
+  display: block;
+}
+.loop-menu-content {
+  border: 1px solid #949494;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 0 -20px;
+  padding: 10px;
+  display: none;
+  position: absolute;
+  min-width: 250px;
+  box-shadow: -10px 10px 10px -4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  font-size: 1rem;
+  background-color: #eaeaea;
+}
+.loop-menu-content a {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  color: #606060;
+  padding: 14px 10px;
+  text-decoration: none;
+  display: block;
+  transition: 0.1s ease;
+}
+.loop-menu-content a:hover {
+  letter-spacing: 0.2rem;
+  background-color: #f7f7f7;
+}
 .loop-nav {
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 100px;
   margin: 0;
   background-color: #606060;
@@ -32,6 +129,31 @@ body {
   .loop-nav {
     border-top: 0;
     height: 60px;
+  }
+}
+.loop-point {
+  cursor: pointer;
+}
+.loop-nav-text {
+  width: 200px;
+  margin: 0 20px;
+  font-size: 1.5rem;
+  color: #eaeaea;
+}
+.loop-nav-text-right {
+  width: 200px;
+  margin: 0 20px;
+  font-size: 1.5rem;
+  color: #eaeaea;
+  text-align: right;
+}
+.loop-nav-text-right span {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+@media (max-width: 550px) {
+  .loop-nav-text-right span {
+    display: none;
   }
 }
 .loop-container {
@@ -46,7 +168,7 @@ body {
   width: 300px;
   margin: 30px;
   padding: 30px;
-  border-radius: 30px;
+  border-radius: 40px;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 375px) {
@@ -61,7 +183,8 @@ body {
 .loop-create .loop-button {
   background-color: #eaeaea;
   border: 1px solid #949494;
-  border-radius: 0.5rem;
+  /*border-radius: 50px;*/
+  border-radius: 2rem;
   color: #606060;
   display: inline-block;
   font-size: 0.7rem;
@@ -97,7 +220,8 @@ body {
 .loop-button {
   background-color: #eaeaea;
   border: 1px solid #949494;
-  border-radius: 0.5rem;
+  /*border-radius: 50px;*/
+  border-radius: 2rem;
   color: #606060;
   display: inline-block;
   font-size: 0.7rem;
@@ -137,6 +261,7 @@ section {
   opacity: 0.5;
 }
 .loop-form-input {
+  margin-top: 1.5rem;
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
@@ -184,6 +309,12 @@ section {
     margin-bottom: 40px;
   }
 }
+@media (max-width: 375px) {
+  .loop-loop {
+    width: 100%;
+    flex-direction: column;
+  }
+}
 @media (max-width: 666px) {
   .media666 {
     height: 12rem;
@@ -192,8 +323,8 @@ section {
 }
 @media (max-width: 375px) {
   .media375 {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
   }
 }
@@ -216,9 +347,14 @@ section {
 }
 @media (max-width: 375px) {
   .loop-start {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .loop-start {
+    margin-bottom: 40px;
   }
 }
 .loop-start:hover {
@@ -229,6 +365,9 @@ section {
 .loop-start:focus {
   opacity: 0.7;
   outline: 0 white;
+}
+.loop-start:active {
+  outline: none;
 }
 .loop-start-ongoing {
   opacity: 0.7;
@@ -251,10 +390,21 @@ section {
 }
 @media (max-width: 375px) {
   .loop-start-ongoing {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
   }
+}
+@media (max-width: 375px) {
+  .loop-start-ongoing {
+    margin-bottom: 40px;
+  }
+}
+.loop-start-ongoing:active {
+  outline: none;
+}
+.loop-start-ongoing:focus {
+  outline: none;
 }
 @keyframes spinStart {
   100% {
@@ -281,10 +431,16 @@ section {
 }
 @media (max-width: 375px) {
   .loop-stop-inactive {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
   }
+}
+.loop-stop-inactive:active {
+  outline: none;
+}
+.loop-stop-inactive:focus {
+  outline: none;
 }
 .loop-stop {
   opacity: 0.25;
@@ -307,10 +463,16 @@ section {
 }
 @media (max-width: 375px) {
   .loop-stop {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
   }
+}
+.loop-stop:active {
+  outline: none;
+}
+.loop-stop:focus {
+  outline: none;
 }
 @media (max-width: 666px) {
   .loop-stop {
@@ -320,8 +482,8 @@ section {
 }
 @media (max-width: 375px) {
   .loop-stop {
-    height: 9rem;
-    width: 9rem;
+    height: 12rem;
+    width: 12rem;
     font-size: 1rem;
   }
 }
@@ -333,4 +495,7 @@ section {
 .loop-stop:focus {
   opacity: 0.25;
   outline: 0 white;
+}
+.loop-stop:active {
+  outline: none;
 }

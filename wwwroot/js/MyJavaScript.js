@@ -5,3 +5,4 @@
     }
     document.getElementById(activityId).style.display = "block";
 }
+

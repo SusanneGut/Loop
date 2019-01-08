@@ -1,4 +1,4 @@
-﻿@model MemberActivitiesVM;
+﻿@model MemberActivitiesVM
 @{
     ViewBag.Title = "Activities";
     Layout = "_Layout";
@@ -6,38 +6,20 @@
 
 @foreach(var activity in Model.Activities)
 {
-
     <div class="loop-create">
-
         <h3>@activity.ActivityName</h3>
-
         <p><strong>ID: </strong>@activity.ActivityId</p>
-
-        @activity.IsActive
-
         <form asp-controller="Member" asp-action="SetStart" asp-route-id="@activity.ActivityId">
             <button class="loop-button">start</button>
         </form>
-
         <form asp-controller="Member" asp-action="SetStop" asp-route-id="@activity.ActivityId">
             <button class="loop-button">stop</button>
         </form>
-
         <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.ActivityId">Details</a>
         <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.ActivityId">Edit @activity.ActivityName</a>
-
     </div>
 }
-
-<div class="loop-mini-container">
-    <a class="loop-button" asp-controller="Member" asp-action="CreateActivity">Add activity</a>
-</div>
 @section scripts{
-
-
-
-
-
     <script src="~/js/MyJavaScript.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>

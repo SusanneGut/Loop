@@ -63,12 +63,19 @@ namespace Loop.Models
 
         public async Task<MemberActivityVM> GetActivityById(int id)
         {
-            bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-
+            var listOfTimes = context.Timestamp.Where(o => o.ActivityId == id);
+            TimeSpan span = TimeSpan.Zero;
+            DateTime lastStop;
+            DateTime lastStart;
+            bool isEmpty = !listOfTimes.Any();
             bool isActive = false;
 
             if(!isEmpty)
             {
+                span = DateTime.UtcNow - Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                lastStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
+                lastStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+
                 var stopStatus = context
                     .Timestamp
                     .Where(o => o.ActivityId == id)
@@ -77,6 +84,11 @@ namespace Loop.Models
 
                 if(stopStatus == null)
                     isActive = true;
+
+                if(lastStop > lastStart)
+                {
+                    span = lastStop - lastStart;
+                }
             }
 
             return await context
@@ -84,6 +96,7 @@ namespace Loop.Models
                 .Where(i => i.Id == id)
                 .Select(o => new MemberActivityVM
                 {
+                    TimeSpan = span,
                     ActivityId = o.Id,
                     ActivityName = o.ActivityName,
                     IsActive = isActive,
@@ -99,7 +112,6 @@ namespace Loop.Models
                 {
                     ActivityName = o.ActivityName,
                     Id = o.Id,
-
                 })
                 .SingleOrDefaultAsync(e => e.Id == id);
         }
@@ -167,9 +179,7 @@ namespace Loop.Models
                 var lastPost = selectedActivityList.Last();
 
                 if(lastPost.Stop == null)
-                {
                     lastPost.Stop = time;
-                }
 
                 await context.SaveChangesAsync();
             }

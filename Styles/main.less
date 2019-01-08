@@ -17,11 +17,25 @@ body {
     font-family: 'Varela Round', sans-serif;
 }
 
+h3 {
+    margin-bottom: 0;
+}
+
 .loop-mini-container {
     @media (max-width: 375px) {
         margin: 0;
         padding: 0 30px;
         width: 100%;
+    }
+}
+
+.loop-header {
+    .loop-create;
+    width: unset;
+    padding: 10px 30px;
+
+    h3 {
+        text-transform: uppercase;
     }
 }
 
@@ -38,10 +52,50 @@ body {
     box-shadow: 0 0 3rem @green
 }
 
+.loop-menu {
+    position: relative;
+    display: inline-block;
+    transition: 0.1s ease;
+
+    &:hover .loop-menu-content {
+        display: block;
+    }
+}
+
+.loop-menu-content {
+    border: 1px solid @grey;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 0 -20px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    min-width: 250px;
+    box-shadow: -10px 10px 10px -4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    font-size: 1rem;
+    background-color: @lightgrey;
+
+    a {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 0.05rem;
+        color: @darkgrey;
+        padding: 14px 10px;
+        text-decoration: none;
+        display: block;
+        transition: 0.1s ease;
+
+        &:hover {
+            letter-spacing: 0.2rem;
+            background-color: @lightergrey;
+        }
+    }
+}
+
 .loop-nav {
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: 100px;
     margin: 0;
     background-color: @darkgrey;
@@ -50,6 +104,31 @@ body {
     @media (max-width: 375px) {
         border-top: 0;
         height: 60px;
+    }
+}
+
+.loop-point {
+    cursor: pointer;
+}
+
+.loop-nav-text {
+    width: 200px;
+    margin: 0 20px;
+    font-size: 1.5rem;
+    color: #eaeaea;
+}
+
+.loop-nav-text-right {
+    .loop-nav-text;
+    text-align: right;
+
+    span {
+        font-size: 1rem;
+        padding: 0.5rem;
+
+        @media (max-width:550px) {
+            display: none;
+        }
     }
 }
 
@@ -66,7 +145,7 @@ body {
     width: 300px;
     margin: 30px;
     padding: 30px;
-    border-radius: 30px;
+    border-radius: 40px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 
     @media (max-width: 375px) {
@@ -86,7 +165,8 @@ body {
 .loop-button {
     background-color: @lightgrey;
     border: 1px solid @grey;
-    border-radius: 0.5rem;
+    /*border-radius: 50px;*/
+    border-radius: 2rem;
     color: @darkgrey;
     display: inline-block;
     font-size: 0.7rem;
@@ -130,6 +210,7 @@ section {
 }
 
 .loop-form-input {
+    margin-top: 1.5rem;
     display: block;
     width: 100%;
     padding: .5rem 1rem;
@@ -176,6 +257,11 @@ section {
         width: 100%;
         margin-bottom: 40px;
     }
+
+    @media (max-width: 375px) {
+        width: 100%;
+        flex-direction: column;
+    }
 }
 
 .media666 {
@@ -187,8 +273,8 @@ section {
 
 .media375 {
     @media (max-width: 375px) {
-        height: @loopButtonSize - 9;
-        width: @loopButtonSize - 9;
+        height: @loopButtonSize - 6;
+        width: @loopButtonSize - 6;
         font-size: @loopButtonFontSize - 0.4;
     }
 }
@@ -206,6 +292,10 @@ section {
     .media666;
     .media375;
 
+    @media (max-width: 375px) {
+        margin-bottom: 40px;
+    }
+
     &:hover {
         border: 1px solid white;
         box-shadow: 0 0 2rem rgba(0,0,0,0.5);
@@ -215,6 +305,10 @@ section {
     &:focus {
         opacity: .7;
         outline: 0 white;
+    }
+
+    &:active {
+        outline: none;
     }
 }
 
@@ -232,6 +326,18 @@ section {
     width: @loopButtonSize;
     .media666;
     .media375;
+
+    @media (max-width: 375px) {
+        margin-bottom: 40px;
+    }
+
+    &:active {
+        outline: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 @keyframes spinStart {
@@ -253,6 +359,14 @@ section {
     transition: .2s;
     .media666;
     .media375;
+
+    &:active {
+        outline: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .loop-stop {
@@ -270,5 +384,9 @@ section {
     &:focus {
         opacity: .25;
         outline: 0 white;
+    }
+
+    &:active {
+        outline: none;
     }
 }

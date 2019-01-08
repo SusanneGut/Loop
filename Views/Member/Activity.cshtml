@@ -1,21 +1,46 @@
-﻿@model MemberActivityVM;
+﻿@model MemberActivityVM
 @{
     ViewBag.Title = "Activity";
     Layout = "_Layout";
 }
 
-<div class="loop-create">
+<div class="loop-header">
     <h3>@Model.ActivityName</h3>
 </div>
+
 <div class="loop-loop">
-    <form asp-controller="Member" asp-action="SetStart" asp-route-id="@Model.ActivityId">
-        <button class="@(Model.IsActive?"loop-start-ongoing disabled":"loop-start")">start</button>
-    </form>
-    <form asp-controller="Member" asp-action="SetStop" asp-route-id="@Model.ActivityId">
-        <button class="@(Model.IsActive?"loop-stop":"loop-stop-inactive disabled")">stop</button>
-    </form>
+    <button id="start" class="@(Model.IsActive?"loop-start-ongoing disabled":"loop-start")">start</button>
+    <button id="stop" class="@(Model.IsActive?"loop-stop":"loop-stop-inactive disabled")">stop</button>
 </div>
 
-<div class="loop-mini-container">
-    <a class="loop-button" asp-controller="Member" asp-action="Activities">activities</a>
-</div>
+@Model.TimeSpan
+
+@section scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#start").click(function () {
+            var activityId = @Model.ActivityId;
+
+            $.ajax({
+                url: "/Member/SetStart/" + activityId,
+                type: "POST",
+                success: function () {
+                    $("#start").removeClass("loop-start").addClass("loop-start-ongoing disabled");
+                    $("#stop").removeClass("loop-stop-inactive disabled").addClass("loop-stop");
+                }
+            });
+        });
+
+        $("#stop").click(function () {
+            var activityId = @Model.ActivityId;
+            $.ajax({
+                url: "/Member/SetStop/" + activityId,
+                type: "POST",
+                success: function () {
+                    $("#start").removeClass("loop-start-ongoing disabled").addClass("loop-start");
+                    $("#stop").removeClass("loop-stop").addClass("loop-stop-inactive disabled");
+                }
+            });
+        });
+    </script>
+}

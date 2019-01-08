@@ -11,19 +11,21 @@ namespace Loop.Models.ViewModels
     {
         public int Id { get; set; }
 
-		[Required(ErrorMessage = "Enter username")]
-		public string Name { get; set; }
+        [Display(Prompt = "Username")]
+        [Required(ErrorMessage = "Enter username")]
+        public string Name { get; set; }
 
-        [Display(Name = "E-mail")]
+        [Display(Prompt = "E-mail")]
         [Required(ErrorMessage = "Enter E-mail")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Display(Prompt = "•••••")]
         [Required(ErrorMessage = "Enter password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
+        [Display(Prompt = "Confirm password")]
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
 
