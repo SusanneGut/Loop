@@ -1,17 +1,16 @@
 ﻿@model MemberCreateActivityVM
 @{
-    ViewBag.Title = "Create new activity";
+    ViewBag.Title = "Create activity";
     Layout = "_Layout";
 }
 
-
 <div class="loop-create">
-    <h1>@ViewBag.Title</h1>
+    <h3>@ViewBag.Title</h3>
     <form asp-controller="Member" asp-action="CreateActivity">
-        <input class="loop-form-input" asp-for="ActivityName" placeholder="Activity name" />
+        <input class="loop-form-input" asp-for="ActivityName" />
         <span class="loop-error" asp-validation-for="ActivityName"></span>
         <br />
-        <button class="loop-button">Create</button>
+        <button class="loop-button">@ViewBag.Title</button>
     </form>
 </div>
 @section scripts{

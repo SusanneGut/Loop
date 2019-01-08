@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
@@ -12,20 +13,36 @@
     <partial name="_User"  />
 
     <div class="loop-nav">
+        <div class="loop-nav-text">
+            <div class="loop-point loop-menu">
+                <i class="fas fa-bars"></i>
+                <div class="loop-menu-content">
+                    <a asp-controller="Account" asp-action="Login">Login</a>
+                    <a asp-controller="Account" asp-action="Create">Create new account</a>
+                    <a asp-controller="Member" asp-action="Activities">Activities</a>
+                    <a asp-controller="Member" asp-action="CreateActivity">Create new activity</a>
+                    <form asp-controller="Account" asp-action="LogOut">
+                        <input class="loop-button" type="submit" value="Logout" />
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
         <div>
-            <a asp-controller="Account" asp-action="Login">
+            <a asp-controller="Member" asp-action="Activities">
                 <img src="~/img/LoopLogo.svg" alt="Loop logo" />
             </a>
         </div>
+        <div class="loop-nav-text-right"><span>@ViewBag.Name Jocke</span><i class="fas fa-user"></i></div>
     </div>
     <div class="loop-container">
-
         @RenderBody()
         <form class="loop-logout-container" asp-controller="Account" asp-action="LogOut">
             <input class="loop-button" type="submit" value="Logout" />
         </form>
     </div>
     @RenderSection("scripts", false)
-
 </body>
 </html>

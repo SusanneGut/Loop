@@ -20,13 +20,21 @@ namespace Loop.Controllers
 			this.userManager = userManager;
         }
 
+		//[HttpGet]
+		//public async Task<string> CurrentUser()
+		//{
+		//	IdentityUser user = await GetCurrentUserAsync();
+		//	return user?.UserName;
+		//}
+		//private Task<IdentityUser> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
+
 		[HttpGet]
-		public async Task<string> CurrentUser()
+		public async Task<IActionResult> Index()
 		{
-			IdentityUser user = await GetCurrentUserAsync();
-			return user?.UserName;
+			var user = await userManager.GetUserAsync(HttpContext.User);
+			ViewBag.Name = user.UserName;
+			return View();
 		}
-		private Task<IdentityUser> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
 
 		[HttpGet]
 		public IActionResult Details()

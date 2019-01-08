@@ -1,21 +1,16 @@
-﻿
-
-@model MemberEditActivityVM;
-
+﻿@model MemberEditActivityVM
 @{
-    ViewBag.Title = "Edit activity details";
+    ViewBag.Title = "Edit activity";
     Layout = "_Layout";
-
 }
 
-
-
 <div class="loop-create">
-    <h1>Edit Activity</h1>
+    <h3>@ViewBag.Title</h3>
     <form asp-controller="Member" asp-action="EditActivity" asp-route-id="@Model.Id">
         <input class="loop-form-input" asp-for="ActivityName" />
         <span class="loop-error" asp-validation-for="ActivityName"></span>
-        <button class="loop-button">Edit</button>
+        <br />
+        <button class="loop-button">@ViewBag.Title</button>
     </form>
 </div>
 

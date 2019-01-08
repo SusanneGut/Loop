@@ -66,6 +66,12 @@ namespace Loop.Models
 
 		}
 
+		//public async Task<string> GetUserStatus()
+		//{
+		//	IdentityUser u = await userManager.FindByNameAsync(user);
+		//	return u?.UserName;
+		//}
+
 		public async Task EditAsync(AccountEditUserVM User)
 		{
 			var user = await userManager.FindByNameAsync(User.OldName);
