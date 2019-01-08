@@ -13,7 +13,7 @@ namespace Loop.Models.ViewModels
 
         [Display(Prompt = "Username")]
         [Required(ErrorMessage = "Enter username")]
-        public string Name { get; set; }
+	public string UserName { get; set; }
 
         [Display(Prompt = "E-mail")]
         [Required(ErrorMessage = "Enter E-mail")]
@@ -28,6 +28,7 @@ namespace Loop.Models.ViewModels
         [Display(Prompt = "Confirm password")]
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+
 
     }
 }

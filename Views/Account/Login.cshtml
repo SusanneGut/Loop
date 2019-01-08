@@ -8,9 +8,8 @@
 
     <h3>@ViewBag.Title</h3>
     <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-
-        <input class="loop-form-input" asp-for="Username" />
-        <span class="loop-error" asp-validation-for="Username"></span>
+        <input class="loop-form-input" asp-for="UserName" placeholder="UserName" />
+        <span class="loop-error" asp-validation-for="UserName"></span>
 
         <input class="loop-form-input" asp-for="Password" />
         <span class="loop-error" asp-validation-for="Password"></span>

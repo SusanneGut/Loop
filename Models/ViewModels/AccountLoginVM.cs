@@ -10,7 +10,7 @@ namespace Loop.Models.ViewModels
     {
         [Display(Prompt = "Username")]
         [Required]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Display(Prompt = "Password")]
         [Required]

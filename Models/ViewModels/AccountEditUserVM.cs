@@ -11,7 +11,7 @@ namespace Loop.Models.ViewModels
 		public int Id { get; set; }
 
 		[Required(ErrorMessage = "Enter user name")]
-		public string Name { get; set; }
+		public string UserName { get; set; }
 
 		[Display(Name = "E-mail")]
 		[Required(ErrorMessage = "Enter E-mail")]
