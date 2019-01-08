@@ -30,12 +30,6 @@ namespace Loop.Models
             this.signInManager = signInManager;
         }
 
-		//private async Task <IdentityUser> GetCurrentUserAsync()
-		//{
-		//	return await userManager.GetUserNameAsync();
-			
-		//}
-
 		public async Task<bool> TryLoginAsync(AccountLoginVM viewModel)
 		{
 			//// Create DB schema (first time)
