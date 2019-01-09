@@ -23,17 +23,6 @@ namespace Loop.Controllers
 			this.userManager = userManager;
         }
 
-        //[HttpGet]
-        //[Route("Member")]
-        //public IActionResult Index()
-        //{
-        //    if(!ModelState.IsValid)
-        //    {
-        //        return View(nameof(Index));
-        //    }
-        //    return View(new MemberIndexVM { Username = User.Identity.Name });
-        //}
-
         [HttpGet]
         public IActionResult CreateActivity()
         {
@@ -84,34 +73,7 @@ namespace Loop.Controllers
             return RedirectToAction(nameof(Activities));
         }
 
-        //[HttpGet]
-        //[Route("/member/edit/{name}")]
-        //public async Task<IActionResult> Edit(string name)
-        //{
-        //    return View(await service.GetUserByNameAsync(name));
-        //}
-
-        //[HttpPost]
-        //[Route("/member/edit/{name}")]
-        //public async Task<IActionResult> Edit(AccountEditUserVM User)
-        //{
-        //    await service.EditAsync(User);
-        //    return RedirectToAction(nameof(Activities));
-        //}
-
-
-
-
-        //[Route("Members/SetStart/{id}")]
-        //public async Task<IActionResult> SetStart(int id)
-        //{
-        //    await service.SetStart(DateTime.UtcNow.ToString(), id);
-        //    return RedirectToAction(nameof(Activity));
-        //}
-
-
-
-
+       
         [HttpGet]
         public IActionResult SetStart()
         {

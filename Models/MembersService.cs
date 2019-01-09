@@ -13,7 +13,7 @@ namespace Loop.Models
     public class MembersService
     {
         LoopContext context;
-		readonly UserManager<IdentityUser> userManager;
+        readonly UserManager<IdentityUser> userManager;
 
 
         public MembersService(LoopContext context, UserManager<IdentityUser> userManager)
@@ -29,7 +29,7 @@ namespace Loop.Models
                 .AddAsync(new Activity
                 {
                     ActivityName = activity.ActivityName,
-					UserId = id
+                    UserId = id
                 });
 
             await context.SaveChangesAsync();
@@ -42,15 +42,17 @@ namespace Loop.Models
             {
                 Activities = await context
                 .Activity
-				.Where(e=>e.UserId==id)
+                .Where(e => e.UserId == id)
                 .OrderBy(o => o.ActivityName)
                 .Select(a => new MemberActivityVM
                 {
                     ActivityName = a.ActivityName,
-                    ActivityId = a.Id,
+					ActivityId = a.Id
+			
                 })
                 .ToArrayAsync()
             };
+
         }
 
         public bool GetActiveStatus(int id)
@@ -66,20 +68,43 @@ namespace Loop.Models
 
         public async Task<MemberActivityVM> GetActivityById(int id)
         {
-            bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-
+            var listOfTimes = context.Timestamp.Where(o => o.ActivityId == id);
+            var lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+            var lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
+            TimeSpan currentTime = TimeSpan.Zero;
+            TimeSpan totalTime = TimeSpan.Zero;
+            DateTime lastStop;
+            DateTime lastStart;
             bool isActive = false;
+            bool isEmpty = !listOfTimes.Any();
+
+            //Total time
+            foreach(var item in listOfTimes)
+            {
+                var rowTotal = Convert.ToDateTime(item.Stop) - Convert.ToDateTime(item.Start);
+                totalTime = totalTime.Add(rowTotal);
+            }
 
             if(!isEmpty)
             {
+                lastStop = lastPostStop;
+                lastStart = lastPostStart;
+
+                //Om .stop är null => .stop isActive.
                 var stopStatus = context
                     .Timestamp
                     .Where(o => o.ActivityId == id)
                     .LastOrDefault()
                     .Stop;
-
                 if(stopStatus == null)
+                {
+                    currentTime = DateTime.UtcNow - lastPostStart;
                     isActive = true;
+                }
+                else
+                    currentTime = lastStop - lastStart;
+
+
             }
 
             return await context
@@ -87,6 +112,9 @@ namespace Loop.Models
                 .Where(i => i.Id == id)
                 .Select(o => new MemberActivityVM
                 {
+                    Span = currentTime,
+                    //Span = totalTime,
+                    ActivityId = o.Id,
                     ActivityName = o.ActivityName,
                     IsActive = isActive,
                 })
@@ -107,32 +135,32 @@ namespace Loop.Models
         }
 
 
-		//public async Task<MemberEditVM> GetUserByNameAsync(string user)
-		//{
-		//    var identityUser = await userManager.FindByNameAsync(user);
+        //public async Task<MemberEditVM> GetUserByNameAsync(string user)
+        //{
+        //    var identityUser = await userManager.FindByNameAsync(user);
 
-		//    return new MemberEditVM
-		//    {
-		//        Name = identityUser.UserName,
-		//        Email = identityUser.Email,
-		//        OldName = identityUser.UserName
-		//    };
+        //    return new MemberEditVM
+        //    {
+        //        Name = identityUser.UserName,
+        //        Email = identityUser.Email,
+        //        OldName = identityUser.UserName
+        //    };
 
-		//}
+        //}
 
-		//public async Task EditAsync(MemberEditVM User)
-		//{
-		//    var user = await userManager.FindByNameAsync(User.OldName);
+        //public async Task EditAsync(MemberEditVM User)
+        //{
+        //    var user = await userManager.FindByNameAsync(User.OldName);
 
-		//    await userManager.SetUserNameAsync(user, User.Name);
-		//    await userManager.SetEmailAsync(user, User.Email);
+        //    await userManager.SetUserNameAsync(user, User.Name);
+        //    await userManager.SetEmailAsync(user, User.Email);
 
-		//    await userManager.UpdateAsync(user);
-		//    await context.SaveChangesAsync();
+        //    await userManager.UpdateAsync(user);
+        //    await context.SaveChangesAsync();
 
-		//}
+        //}
 
-		public async Task EditActivityAsync(MemberEditActivityVM input)
+        public async Task EditActivityAsync(MemberEditActivityVM input)
         {
             var a = await context.Activity.FindAsync(input.Id);
 

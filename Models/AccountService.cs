@@ -47,8 +47,12 @@ namespace Loop.Models
 			var user = new IdentityUser { UserName = member.UserName, Email = member.Email };
 
 			var created = await userManager.CreateAsync(user,member.Password);
-			
-			await loopContext.SaveChangesAsync();
+
+			if (created.Succeeded)
+			{
+				await loopContext.SaveChangesAsync();
+				await signInManager.SignInAsync(user, false);
+			}
 
 			return created.Succeeded;
 		}
@@ -65,12 +69,6 @@ namespace Loop.Models
 			};
 
 		}
-
-		//public async Task<string> GetUserStatus()
-		//{
-		//	IdentityUser u = await userManager.FindByNameAsync(user);
-		//	return u?.UserName;
-		//}
 
 		public async Task EditAsync(AccountEditUserVM User)
 		{

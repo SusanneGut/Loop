@@ -11,6 +11,6 @@ namespace Loop.Models.ViewModels
         public string ActivityName { get; set; }
         public bool IsActive { get; set; }
         public MemberEditActivityVM EditActivityVM { get; set; }
-        public TimeSpan TimeSpan { get; set; }
+        public TimeSpan Span { get; set; }
     }
 }
