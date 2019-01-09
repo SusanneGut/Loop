@@ -35,29 +35,14 @@ namespace Loop.Models
             await context.SaveChangesAsync();
         }
 
-		public async Task <MemberUserActivitiesVM> GetActivityByUserId(string id)
-		{
-			return new MemberUserActivitiesVM
-			{
-				Activities = await context
-				.Activity
-				.Where(e => e.UserId == id)
-				.OrderBy(o => o.ActivityName)
-				.Select(a => new MemberActivityVM
-				{
-					ActivityName = a.ActivityName
-				})
-				.ToArrayAsync()
-			};
-			
-		}
 
-		public async Task<MemberActivitiesVM> GetAllActivities()
+		public async Task<MemberActivitiesVM> GetAllActivities(string id)
         {
             return new MemberActivitiesVM
             {
                 Activities = await context
                 .Activity
+				.Where(e=>e.UserId==id)
                 .OrderBy(o => o.ActivityName)
                 .Select(a => new MemberActivityVM
                 {

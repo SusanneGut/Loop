@@ -56,7 +56,9 @@ namespace Loop.Controllers
         [HttpGet]
         public async Task<IActionResult> Activities()
         {
-            return View(await service.GetAllActivities());
+			var user = await userManager.GetUserAsync(HttpContext.User);
+			var id = user.Id;
+			return View(await service.GetAllActivities(id));
         }
 
         [HttpGet]
@@ -65,13 +67,6 @@ namespace Loop.Controllers
         {
             return View(await service.GetActivityById(id));
         }
-
-		[HttpGet]
-		[Route("member/useractivities")]
-		public async Task<IActionResult> UserActivities(string id)
-		{
-			return View(await service.GetActivityByUserId(id));
-		}
 
         [HttpGet]
         [Route("/member/editactivity/{Id}")]
