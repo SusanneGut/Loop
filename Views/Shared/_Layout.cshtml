@@ -10,7 +10,6 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <partial name="_User"  />
 
     <div class="loop-nav">
         <div class="loop-nav-text">
@@ -35,13 +34,11 @@
                 <img src="~/img/LoopLogo.svg" alt="Loop logo" />
             </a>
         </div>
-        <div class="loop-nav-text-right"><span>@ViewBag.Name Jocke</span><i class="fas fa-user"></i></div>
+        <div class="loop-nav-text-right"><span>@User.Identity.Name </span><i class="fas fa-user"></i></div>
     </div>
     <div class="loop-container">
         @RenderBody()
-        <form class="loop-logout-container" asp-controller="Account" asp-action="LogOut">
-            <input class="loop-button" type="submit" value="Logout" />
-        </form>
+       
     </div>
     @RenderSection("scripts", false)
 </body>
