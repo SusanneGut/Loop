@@ -1,0 +1,16 @@
+﻿@model MemberUserActivitiesVM
+@{
+    ViewBag.Title = "Activities for User";
+    Layout = "_Layout";
+}
+
+
+    <form asp-controller="Member" asp-action="UserActivities" asp-route-id="@Model.ActivityId">
+        @foreach (var activity in Model.Activities)
+{
+        <div class="loop-create">
+            <h3>@activity.ActivityName</h3>
+        </div>}
+
+
+    </form>

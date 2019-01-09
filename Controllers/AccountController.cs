@@ -12,11 +12,30 @@ namespace Loop.Controllers
     public class AccountController : Controller
     {
         AccountService service;
+		UserManager<IdentityUser>userManager;
 
-        public AccountController(AccountService service)
+		public AccountController(AccountService service, UserManager<IdentityUser> userManager)
         {
             this.service = service;
+			this.userManager = userManager;
         }
+
+		//[HttpGet]
+		//public async Task<string> CurrentUser()
+		//{
+		//	IdentityUser user = await GetCurrentUserAsync();
+		//	return user?.UserName;
+		//}
+		//private Task<IdentityUser> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
+
+		[HttpGet]
+		public async Task<IActionResult> Index()
+		{
+			var user = await userManager.GetUserAsync(HttpContext.User);
+			ViewBag.Name = user.UserName;
+			return View();
+		}
+
 		[HttpGet]
 		public IActionResult Details()
 		{

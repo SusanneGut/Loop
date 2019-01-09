@@ -15,10 +15,12 @@ namespace Loop.Controllers
     public class MemberController : Controller
     {
         private readonly MembersService service;
+		UserManager<IdentityUser> userManager;
 
-        public MemberController(MembersService service)
+		public MemberController(MembersService service, UserManager<IdentityUser> userManager)
         {
             this.service = service;
+			this.userManager = userManager;
         }
 
         //[HttpGet]
@@ -45,7 +47,9 @@ namespace Loop.Controllers
             {
                 return View(activity);
             }
-            await service.AddActivity(activity);
+			var user = await userManager.GetUserAsync(HttpContext.User);
+			var id = user.Id;
+			await service.AddActivity(activity, id);
             return RedirectToAction(nameof(Activities));
         }
 
@@ -61,6 +65,13 @@ namespace Loop.Controllers
         {
             return View(await service.GetActivityById(id));
         }
+
+		[HttpGet]
+		[Route("member/useractivities")]
+		public async Task<IActionResult> UserActivities(string id)
+		{
+			return View(await service.GetActivityByUserId(id));
+		}
 
         [HttpGet]
         [Route("/member/editactivity/{Id}")]

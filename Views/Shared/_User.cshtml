@@ -1,7 +1,7 @@
 ﻿
+<form asp-controller="Account" asp-action="CurrentUser">
 
-<a asp-controller="Account" asp-action="Login" >@Model.UserName </a>
 
+    You are logged in as: @ViewBag.Name
 
-        You are logged in as: @Model.UserName
-
+</form>
