@@ -27,18 +27,17 @@
                 </div>
             </div>
 
-
         </div>
         <div>
             <a asp-controller="Member" asp-action="Activities">
                 <img src="~/img/LoopLogo.svg" alt="Loop logo" />
             </a>
         </div>
-        <div class="loop-nav-text-right"><span>@User.Identity.Name </span><i class="fas fa-user"></i></div>
+        <div class="loop-nav-text-right"><span>@User.Identity.Name </span><i class="@(User.Identity.IsAuthenticated?"fas fa-user":"")"></i></div>
     </div>
     <div class="loop-container">
         @RenderBody()
-       
+
     </div>
     @RenderSection("scripts", false)
 </body>
