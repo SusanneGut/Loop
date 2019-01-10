@@ -12,8 +12,9 @@ h3 {
   }
 }
 .loop-header {
+  display: inline-block;
   text-align: center;
-  width: 300px;
+  width: 295px;
   margin: 30px;
   padding: 30px;
   border-radius: 40px;
@@ -23,10 +24,10 @@ h3 {
 }
 @media (max-width: 375px) {
   .loop-header {
-    width: 100%;
+    width: 85%;
+    padding: 25px 0px;
     border-radius: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
     box-shadow: none;
   }
 }
@@ -163,9 +164,13 @@ h3 {
   justify-content: space-around;
   align-items: center;
 }
-.loop-create {
+.loop-container-row {
   text-align: center;
-  width: 300px;
+}
+.loop-create {
+  display: inline-block;
+  text-align: center;
+  width: 295px;
   margin: 30px;
   padding: 30px;
   border-radius: 40px;
@@ -173,10 +178,10 @@ h3 {
 }
 @media (max-width: 375px) {
   .loop-create {
-    width: 100%;
+    width: 85%;
+    padding: 25px 0px;
     border-radius: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
     box-shadow: none;
   }
 }
@@ -317,6 +322,10 @@ section {
 }
 @media (max-width: 666px) {
   .media666 {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }
@@ -341,6 +350,10 @@ section {
 }
 @media (max-width: 666px) {
   .loop-start {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }
@@ -384,6 +397,10 @@ section {
 }
 @media (max-width: 666px) {
   .loop-start-ongoing {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }
@@ -425,6 +442,10 @@ section {
 }
 @media (max-width: 666px) {
   .loop-stop-inactive {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }
@@ -445,7 +466,6 @@ section {
 .loop-stop {
   opacity: 0.25;
   background-color: #d50000;
-  border: 0;
   border-radius: 50%;
   color: #ffffff;
   font-size: 1.4rem;
@@ -454,9 +474,14 @@ section {
   width: 18rem;
   transition: 0.2s;
   opacity: 1;
+  border: 0;
 }
 @media (max-width: 666px) {
   .loop-stop {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }
@@ -476,6 +501,10 @@ section {
 }
 @media (max-width: 666px) {
   .loop-stop {
+    border-top: 7px solid #ffffff;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+    border-left: 7px solid transparent;
     height: 12rem;
     width: 12rem;
   }

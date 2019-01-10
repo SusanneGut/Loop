@@ -79,7 +79,7 @@ namespace Loop.Models
 			DateTime lastStart;
 			bool isActive = false;
 			bool isEmpty = !listOfTimes.Any();
-			var activeStatus = context.Timestamp.Where(o => o.ActivityId == id).LastOrDefault().Stop;
+			//var activeStatus = context.Timestamp.Where(o => o.ActivityId == id).LastOrDefault().Stop;
 
 			//Total time
 			foreach (var item in listOfTimes)
