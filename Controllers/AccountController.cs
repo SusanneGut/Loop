@@ -18,14 +18,6 @@ namespace Loop.Controllers
             this.service = service;
         }
 
-		//[HttpGet]
-		//public async Task<string> CurrentUser()
-		//{
-		//	IdentityUser user = await GetCurrentUserAsync();
-		//	return user?.UserName;
-		//}
-		//private Task<IdentityUser> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
-
 		[HttpGet]
 		public IActionResult Details()
 		{
@@ -35,11 +27,6 @@ namespace Loop.Controllers
 			}
 			return View(new AccountDetailsVM { UserName = User.Identity.Name });
 		}
-
-		//public IActionResult Index()
-  //      {
-  //          return View();
-  //      }
 
         [HttpGet]
         [Route("")]
@@ -93,18 +80,6 @@ namespace Loop.Controllers
 			return RedirectToAction(nameof(MemberController.Activities), "member");
 
 		}
-
-		//      [HttpPost]
-		//      public async Task<IActionResult> Create(AccountCreateVM member)
-		//      {
-		//          if(!ModelState.IsValid)
-		//              return View(nameof(Login));
-
-		//          await service.AddMemberAsync(member);
-
-		//	return RedirectToAction(nameof(MemberController.Activities),"member");
-
-		//}
 
 		[HttpPost]
 		public async Task<IActionResult> Logout()

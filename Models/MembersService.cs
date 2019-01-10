@@ -35,9 +35,10 @@ namespace Loop.Models
             await context.SaveChangesAsync();
         }
 
-        public async Task<MemberUserActivitiesVM> GetActivityByUserId(string id)
+
+		public async Task<MemberActivitiesVM> GetAllActivities(string id)
         {
-            return new MemberUserActivitiesVM
+            return new MemberActivitiesVM
             {
                 Activities = await context
                 .Activity
@@ -45,26 +46,13 @@ namespace Loop.Models
                 .OrderBy(o => o.ActivityName)
                 .Select(a => new MemberActivityVM
                 {
-                    ActivityName = a.ActivityName
-                })
-                .ToArrayAsync()
-            };
-        }
-
-        public async Task<MemberActivitiesVM> GetAllActivities()
-        {
-            return new MemberActivitiesVM
-            {
-                Activities = await context
-                .Activity
-                .OrderBy(o => o.ActivityName)
-                .Select(a => new MemberActivityVM
-                {
                     ActivityName = a.ActivityName,
-                    ActivityId = a.Id,
+					ActivityId = a.Id
+			
                 })
                 .ToArrayAsync()
             };
+
         }
 
         public bool GetActiveStatus(int id)
