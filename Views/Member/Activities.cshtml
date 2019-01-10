@@ -8,7 +8,7 @@
 {
 <div class="loop-create">
     <h3>@activity.ActivityName</h3>
-    @(activity.IsActive ? "Yes" : "No")
+    @activity.IsActive
     <p><strong>ID: </strong>@activity.ActivityId</p>
     <form asp-controller="Member" asp-action="SetStart" asp-route-id="@activity.ActivityId">
         <button class="loop-button">start</button>

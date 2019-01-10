@@ -39,7 +39,6 @@ namespace Loop.Models
 		public async Task<MemberActivitiesVM> GetAllActivities(string id)
 		{
 			var activeStatus = context.Timestamp.LastOrDefault().Stop;
-
 			
 				return new MemberActivitiesVM
 				{
