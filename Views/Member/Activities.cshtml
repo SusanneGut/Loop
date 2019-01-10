@@ -4,10 +4,11 @@
     Layout = "_Layout";
 }
 
-@foreach (var activity in Model.Activities)
+@foreach(var activity in Model.Activities)
 {
     <div class="loop-create">
         <h3>@activity.ActivityName</h3>
+        @activity.IsActive
         <p><strong>ID: </strong>@activity.ActivityId</p>
         <form asp-controller="Member" asp-action="SetStart" asp-route-id="@activity.ActivityId">
             <button class="loop-button">start</button>

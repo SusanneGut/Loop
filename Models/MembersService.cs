@@ -49,7 +49,6 @@ namespace Loop.Models
                 })
                 .ToArrayAsync()
             };
-
         }
 
         public async Task<MemberActivitiesVM> GetAllActivities()
@@ -82,8 +81,6 @@ namespace Loop.Models
         public async Task<MemberActivityVM> GetActivityById(int id)
         {
             var listOfTimes = context.Timestamp.Where(o => o.ActivityId == id);
-            var lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
-            var lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
             TimeSpan currentTime = TimeSpan.Zero;
             TimeSpan totalTime = TimeSpan.Zero;
             DateTime lastStop;
@@ -100,6 +97,8 @@ namespace Loop.Models
 
             if(!isEmpty)
             {
+                var lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                var lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
                 lastStop = lastPostStop;
                 lastStart = lastPostStart;
 
@@ -212,12 +211,16 @@ namespace Loop.Models
                 if(lastPost.Stop == null)
                 {
                     lastPost.Stop = time;
+                    TimeSpan totalRowTime = Convert.ToDateTime(lastPost.Stop) - Convert.ToDateTime(lastPost.Start);
+                    var secondToLast = selectedActivityList.Count() - 1;
+
+
+                    lastPost.TotalTime = totalRowTime.ToString();
                 }
 
                 await context.SaveChangesAsync();
             }
         }
-
     }
 }
 
