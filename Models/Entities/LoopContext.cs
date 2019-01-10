@@ -156,6 +156,10 @@ namespace Loop.Models.Entities
 
                 entity.Property(e => e.TotalTime).HasMaxLength(50);
 
+                entity.Property(e => e.TotalTime)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.Timestamp)
                     .HasForeignKey(d => d.ActivityId)

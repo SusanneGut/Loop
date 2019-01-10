@@ -10,10 +10,11 @@ namespace Loop.Models.ViewModels
 	{
 		public int Id { get; set; }
 
-		[Required(ErrorMessage = "Enter user name")]
+		[Display(Prompt = "Username")]
+		[Required(ErrorMessage = "Enter username")]
 		public string UserName { get; set; }
 
-		[Display(Name = "E-mail")]
+		[Display(Prompt =  "E-mail")]
 		[Required(ErrorMessage = "Enter E-mail")]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }

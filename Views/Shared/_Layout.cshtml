@@ -16,10 +16,17 @@
             <div class="loop-point loop-menu">
                 <i class="fas fa-bars"></i>
                 <div class="loop-menu-content">
-                    <a asp-controller="Account" asp-action="Login">Login</a>
-                    <a asp-controller="Account" asp-action="Create">Create new account</a>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Account" asp-action="Login">Login</a>
+                        <a asp-controller="Account" asp-action="Create">Create new account</a>
+                    }
+                    @if(User.Identity.IsAuthenticated)
+                    {
                     <a asp-controller="Member" asp-action="Activities">Activities</a>
                     <a asp-controller="Member" asp-action="CreateActivity">Create new activity</a>
+                    <a asp-controller="Account" asp-action="EditUser" asp-route-name="@User.Identity.Name">Edit User</a>
+                    }
                     <form asp-controller="Account" asp-action="LogOut">
                         <input class="loop-button" type="submit" value="Logout" />
                     </form>
