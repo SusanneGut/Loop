@@ -71,40 +71,31 @@ namespace Loop.Models
             var listOfTimes = context.Timestamp.Where(o => o.ActivityId == id);
             TimeSpan currentTime = TimeSpan.Zero;
             TimeSpan totalTime = TimeSpan.Zero;
+            TimeSpan almostTotalTime = TimeSpan.Zero;
             DateTime lastStop;
             DateTime lastStart;
             bool isActive = false;
             bool isEmpty = !listOfTimes.Any();
 
-            //Total time
-            foreach(var item in listOfTimes)
-            {
-                var rowTotal = Convert.ToDateTime(item.Stop) - Convert.ToDateTime(item.Start);
-                totalTime = totalTime.Add(rowTotal);
-            }
-
             if(!isEmpty)
             {
-                var lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
-                var lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
-                lastStop = lastPostStop;
-                lastStart = lastPostStart;
+                lastStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                lastStop = DateTime.UtcNow;
+
+                //DateTime lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                //DateTime lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
+                //lastStop = lastPostStop;
+                //lastStart = lastPostStart;
 
                 //Om .stop är null => .stop isActive.
-                var stopStatus = context
-                    .Timestamp
-                    .Where(o => o.ActivityId == id)
-                    .LastOrDefault()
-                    .Stop;
+                var stopStatus = listOfTimes.LastOrDefault().Stop;
+
                 if(stopStatus == null)
                 {
-                    currentTime = DateTime.UtcNow - lastPostStart;
                     isActive = true;
+                    lastStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
                 }
-                else
-                    currentTime = lastStop - lastStart;
-
-
+                //totalTime = TimeSpan.Parse(listOfTimes.LastOrDefault().TotalTime);
             }
 
             return await context
@@ -112,8 +103,7 @@ namespace Loop.Models
                 .Where(i => i.Id == id)
                 .Select(o => new MemberActivityVM
                 {
-                    Span = currentTime,
-                    //Span = totalTime,
+                    //TotalTime = totalTime,
                     ActivityId = o.Id,
                     ActivityName = o.ActivityName,
                     IsActive = isActive,
@@ -173,6 +163,7 @@ namespace Loop.Models
         {
             bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
             var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
+            //string totalTime = TimeSpan.Zero.ToString();
 
             if(isEmpty || (!isEmpty && selectedActivityList.Last().Stop != null))
             {
@@ -180,6 +171,7 @@ namespace Loop.Models
                     .Timestamp
                     .AddAsync(new Timestamp
                     {
+                        //TotalTime = (DateTime.UtcNow - Convert.ToDateTime(selectedActivityList.LastOrDefault().Start)).ToString(),
                         Start = startTime,
                         ActivityId = id
                     });
@@ -190,19 +182,35 @@ namespace Loop.Models
         public async Task SetStop(string stopTime, int id)
         {
             bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-            Timestamp lastRow = context.Timestamp.Where(o => o.ActivityId == id).Last();
-            Timestamp secondToLastRow =  context.Timestamp.Where(o => o.ActivityId == id).OrderByDescending(p => p.Id).Skip(1).Take(1).Last();
+            int listOfTimesLength = context.Timestamp.Where(o => o.ActivityId == id).Count();
+
+            Timestamp lastRow;
+            Timestamp secondToLastRow;
+            TimeSpan totalTime;
+            TimeSpan totalRowTime;
 
             if(!isEmpty)
             {
+                lastRow = context.Timestamp.Where(o => o.ActivityId == id).Last();
+
                 if(lastRow.Stop == null)
                 {
-                    lastRow.Stop = stopTime;
-                    TimeSpan totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
-                    DateTime totalTime = Convert.ToDateTime(secondToLastRow.TotalTime) + totalRowTime;
-                    lastRow.TotalTime = totalTime.ToString();
-                }
+                    if(listOfTimesLength == 1)
+                    {
+                        lastRow.Stop = stopTime;
+                        totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
+                        lastRow.TotalTime = totalRowTime.ToString();
+                    }
 
+                    if(listOfTimesLength > 1)
+                    {
+                        lastRow.Stop = stopTime;
+                        totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
+                        secondToLastRow = context.Timestamp.Where(o => o.ActivityId == id).OrderByDescending(p => p.Id).Skip(1).Take(1).Last();
+                        totalTime = TimeSpan.Parse(secondToLastRow.TotalTime) + totalRowTime;
+                        lastRow.TotalTime = totalTime.ToString();
+                    }
+                }
                 await context.SaveChangesAsync();
             }
         }
