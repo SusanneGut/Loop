@@ -7,12 +7,20 @@
 <div class="loop-container-row">
     @foreach(var activity in Model.Activities)
     {
-        <div class="loop-create">
-            <h3>@activity.ActivityName</h3>
-            <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.ActivityId">Details</a>
-            <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.ActivityId">Edit @activity.ActivityName</a>
+<div class="loop-create">
+    <h3>@activity.ActivityName</h3>
+    @(activity.IsActive ? "Yes" : "No")
+    <p><strong>ID: </strong>@activity.ActivityId</p>
+    <form asp-controller="Member" asp-action="SetStart" asp-route-id="@activity.ActivityId">
+        <button class="loop-button">start</button>
+    </form>
+    <form asp-controller="Member" asp-action="SetStop" asp-route-id="@activity.ActivityId">
+        <button class="loop-button">stop</button>
+    </form>
+    <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.ActivityId">Details</a>
+    <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.ActivityId">Edit @activity.ActivityName</a>
 
-        </div>
+</div>
     }
 </div>
 
