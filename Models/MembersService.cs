@@ -36,7 +36,7 @@ namespace Loop.Models
         }
 
 
-		public async Task<MemberActivitiesVM> GetAllActivities(string id)
+        public async Task<MemberActivitiesVM> GetAllActivities(string id)
         {
             return new MemberActivitiesVM
             {
@@ -47,8 +47,8 @@ namespace Loop.Models
                 .Select(a => new MemberActivityVM
                 {
                     ActivityName = a.ActivityName,
-					ActivityId = a.Id
-			
+                    ActivityId = a.Id
+
                 })
                 .ToArrayAsync()
             };
@@ -169,7 +169,7 @@ namespace Loop.Models
             await context.SaveChangesAsync();
         }
 
-        public async Task SetStart(string time, int id)
+        public async Task SetStart(string startTime, int id)
         {
             bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
             var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
@@ -180,30 +180,27 @@ namespace Loop.Models
                     .Timestamp
                     .AddAsync(new Timestamp
                     {
-                        Start = time,
+                        Start = startTime,
                         ActivityId = id
                     });
                 await context.SaveChangesAsync();
             }
         }
 
-        public async Task SetStop(string time, int id)
+        public async Task SetStop(string stopTime, int id)
         {
             bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-            var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
+            Timestamp lastRow = context.Timestamp.Where(o => o.ActivityId == id).Last();
+            Timestamp secondToLastRow =  context.Timestamp.Where(o => o.ActivityId == id).OrderByDescending(p => p.Id).Skip(1).Take(1).Last();
 
             if(!isEmpty)
             {
-                var lastPost = selectedActivityList.Last();
-
-                if(lastPost.Stop == null)
+                if(lastRow.Stop == null)
                 {
-                    lastPost.Stop = time;
-                    TimeSpan totalRowTime = Convert.ToDateTime(lastPost.Stop) - Convert.ToDateTime(lastPost.Start);
-                    var secondToLast = selectedActivityList.Count() - 1;
-
-
-                    lastPost.TotalTime = totalRowTime.ToString();
+                    lastRow.Stop = stopTime;
+                    TimeSpan totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
+                    DateTime totalTime = Convert.ToDateTime(secondToLastRow.TotalTime) + totalRowTime;
+                    lastRow.TotalTime = totalTime.ToString();
                 }
 
                 await context.SaveChangesAsync();

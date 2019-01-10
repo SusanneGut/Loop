@@ -83,14 +83,14 @@ namespace Loop.Controllers
         [HttpPost]
         public async Task<IActionResult> SetStart(int id)
         {
-            await service.SetStart(DateTime.Now.ToUniversalTime().ToString(), id);
+            await service.SetStart(DateTime.UtcNow.ToString(), id);
             return RedirectToAction(nameof(Activity));
         }
 
         [HttpPost]
         public async Task<IActionResult> SetStop(int id)
         {
-            await service.SetStop(DateTime.Now.ToUniversalTime().ToString(), id);
+            await service.SetStop(DateTime.UtcNow.ToString(), id);
             return RedirectToAction(nameof(Activity));
         }
     }
