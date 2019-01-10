@@ -9,6 +9,7 @@ namespace Loop.Models.Entities
         public string Start { get; set; }
         public string Stop { get; set; }
         public int? ActivityId { get; set; }
+        public string TotalTime { get; set; }
 
         public virtual Activity Activity { get; set; }
     }
