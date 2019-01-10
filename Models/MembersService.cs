@@ -40,10 +40,8 @@ namespace Loop.Models
 		{
 			var activeStatus = context.Timestamp.LastOrDefault().Stop;
 
-			
-				return new MemberActivitiesVM
-				{
-
+			return new MemberActivitiesVM
+			{
 					Activities = await context
 					.Activity
 					.Where(e => e.UserId == id)
@@ -55,7 +53,7 @@ namespace Loop.Models
 
 					})
 					.ToArrayAsync()
-				};
+			};
 
 		}
 

@@ -9,6 +9,7 @@
     {
         <div class="loop-create">
             <h3>@activity.ActivityName</h3>
+    @activity.IsActive
             <a class="loop-button" asp-controller="Member" asp-action="Activity" asp-route-id="@activity.ActivityId">Details</a>
             <a class="loop-button" asp-controller="Member" asp-action="EditActivity" asp-route-id="@activity.ActivityId">Edit @activity.ActivityName</a>
 

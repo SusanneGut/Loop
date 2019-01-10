@@ -23,6 +23,7 @@ namespace Loop.Controllers
 		[Route("login")]
 		public IActionResult Login(string returnUrl)
 		{
+
 			if (User.Identity.IsAuthenticated)
 			{
 				return RedirectToAction(nameof(MemberController.Activities), "member");
