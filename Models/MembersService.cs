@@ -36,7 +36,7 @@ namespace Loop.Models
 		}
 
 
-		public async Task<MemberActivitiesVM> GetAllActivities(string id)
+        public async Task<MemberActivitiesVM> GetAllActivities(string id)
 		{
 			var activeStatus = context.Timestamp.LastOrDefault().Stop;
 			
@@ -50,7 +50,8 @@ namespace Loop.Models
 					.Select(a => new MemberActivityVM
 					{
 						ActivityName = a.ActivityName,
-						ActivityId = a.Id,
+                    ActivityId = a.Id
+
 					})
 					.ToArrayAsync()
 				};
@@ -89,26 +90,23 @@ namespace Loop.Models
 
 			if (!isEmpty)
 			{
-				var lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
-				var lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
-				lastStop = lastPostStop;
-				lastStart = lastPostStart;
+                lastStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                lastStop = DateTime.UtcNow;
+
+                //DateTime lastPostStart = Convert.ToDateTime(listOfTimes.LastOrDefault().Start);
+                //DateTime lastPostStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
+                //lastStop = lastPostStop;
+                //lastStart = lastPostStart;
 
 				//Om .stop är null => .stop isActive.
-				var stopStatus = context
-					.Timestamp
-					.Where(o => o.ActivityId == id)
-					.LastOrDefault()
-					.Stop;
-				if (stopStatus == null)
-				{
-					currentTime = DateTime.UtcNow - lastPostStart;
+                var stopStatus = listOfTimes.LastOrDefault().Stop;
+
+                if(stopStatus == null)
+                {
 					isActive = true;
+                    lastStop = Convert.ToDateTime(listOfTimes.LastOrDefault().Stop);
 				}
-				else
-					currentTime = lastStop - lastStart;
-
-
+                //totalTime = TimeSpan.Parse(listOfTimes.LastOrDefault().TotalTime);
 			}
 
 			return await context
@@ -116,31 +114,13 @@ namespace Loop.Models
 			.Where(i => i.Id == id)
 			.Select(o => new MemberActivityVM
 			{
-				Span = currentTime,
-					//Span = totalTime,
-				ActivityId = o.Id,
-				ActivityName = o.ActivityName,
-				IsActive = isActive
-			})
-				.SingleOrDefaultAsync();
-			
-			//else
-			//{
-			//	return await context
-			//	.Activity
-			//	.Where(i => i.Id == id)
-			//	.Select(o => new MemberActivityVM
-			//	{
-			//		Span = currentTime,
-			//		//Span = totalTime,
-			//		ActivityId = o.Id,
-			//		ActivityName = o.ActivityName,
-			//		IsActive = false,
-			//	})
-			//	.SingleOrDefaultAsync();
-			//}
-			
-		}
+                    //TotalTime = totalTime,
+                    ActivityId = o.Id,
+                    ActivityName = o.ActivityName,
+                    IsActive = isActive,
+                })
+                .SingleOrDefaultAsync();
+        }
 
 		public async Task<MemberEditActivityVM> GetActivityEditAsync(int id)
 		{
@@ -165,44 +145,58 @@ namespace Loop.Models
 			await context.SaveChangesAsync();
 		}
 
-		public async Task SetStart(string time, int id)
-		{
-			bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-			var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
+        public async Task SetStart(string startTime, int id)
+        {
+            bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
+            var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
+            //string totalTime = TimeSpan.Zero.ToString();
 
-			if (isEmpty || (!isEmpty && selectedActivityList.Last().Stop != null))
-			{
-				await context
-					.Timestamp
-					.AddAsync(new Timestamp
-					{
-						Start = time,
-						ActivityId = id,
+            if(isEmpty || (!isEmpty && selectedActivityList.Last().Stop != null))
+            {
+                await context
+                    .Timestamp
+                    .AddAsync(new Timestamp
+                    {
+                        //TotalTime = (DateTime.UtcNow - Convert.ToDateTime(selectedActivityList.LastOrDefault().Start)).ToString(),
+                        Start = startTime,
+                        ActivityId = id
+                    });
+                await context.SaveChangesAsync();
+            }
+        }
 
-					});
-				await context.SaveChangesAsync();
-			}
-		}
+        public async Task SetStop(string stopTime, int id)
+        {
+            bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
+            int listOfTimesLength = context.Timestamp.Where(o => o.ActivityId == id).Count();
 
-		public async Task SetStop(string time, int id)
-		{
-			bool isEmpty = !context.Timestamp.Where(o => o.ActivityId == id).Any();
-			var selectedActivityList = context.Timestamp.Where(o => o.ActivityId == id);
+            Timestamp lastRow;
+            Timestamp secondToLastRow;
+            TimeSpan totalTime;
+            TimeSpan totalRowTime;
 
-			if (!isEmpty)
-			{
-				var lastPost = selectedActivityList.Last();
+            if(!isEmpty)
+            {
+                lastRow = context.Timestamp.Where(o => o.ActivityId == id).Last();
 
-				if (lastPost.Stop == null)
-				{
-					lastPost.Stop = time;
-					TimeSpan totalRowTime = Convert.ToDateTime(lastPost.Stop) - Convert.ToDateTime(lastPost.Start);
-					var secondToLast = selectedActivityList.Count() - 1;
+                if(lastRow.Stop == null)
+                {
+                    if(listOfTimesLength == 1)
+                    {
+                        lastRow.Stop = stopTime;
+                        totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
+                        lastRow.TotalTime = totalRowTime.ToString();
+                    }
 
-
-					lastPost.TotalTime = totalRowTime.ToString();
-				}
-
+                    if(listOfTimesLength > 1)
+                    {
+                        lastRow.Stop = stopTime;
+                        totalRowTime = Convert.ToDateTime(lastRow.Stop) - Convert.ToDateTime(lastRow.Start);
+                        secondToLastRow = context.Timestamp.Where(o => o.ActivityId == id).OrderByDescending(p => p.Id).Skip(1).Take(1).Last();
+                        totalTime = TimeSpan.Parse(secondToLastRow.TotalTime) + totalRowTime;
+                        lastRow.TotalTime = totalTime.ToString();
+                    }
+                }
 				await context.SaveChangesAsync();
 			}
 		}
