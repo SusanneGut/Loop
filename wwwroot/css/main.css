@@ -34,7 +34,6 @@ h3 {
 .loop-header .loop-button {
   background-color: #eaeaea;
   border: 1px solid #949494;
-  /*border-radius: 50px;*/
   border-radius: 2rem;
   color: #606060;
   display: inline-block;
@@ -74,13 +73,6 @@ h3 {
 .loop-error {
   font-size: 0.6rem;
   color: red;
-}
-.loop-color {
-  /*padding: 0;
-    margin: 0;
-    height: 0;
-    width: 100vh;*/
-  box-shadow: 0 0 3rem #008a0a;
 }
 .loop-menu {
   position: relative;
@@ -188,7 +180,6 @@ h3 {
 .loop-create .loop-button {
   background-color: #eaeaea;
   border: 1px solid #949494;
-  /*border-radius: 50px;*/
   border-radius: 2rem;
   color: #606060;
   display: inline-block;
@@ -225,7 +216,6 @@ h3 {
 .loop-button {
   background-color: #eaeaea;
   border: 1px solid #949494;
-  /*border-radius: 50px;*/
   border-radius: 2rem;
   color: #606060;
   display: inline-block;
@@ -466,6 +456,7 @@ section {
 .loop-stop {
   opacity: 0.25;
   background-color: #d50000;
+  border: 0;
   border-radius: 50%;
   color: #ffffff;
   font-size: 1.4rem;
@@ -474,7 +465,6 @@ section {
   width: 18rem;
   transition: 0.2s;
   opacity: 1;
-  border: 0;
 }
 @media (max-width: 666px) {
   .loop-stop {

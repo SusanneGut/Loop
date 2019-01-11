@@ -15,14 +15,14 @@ namespace Loop.Controllers
     public class MemberController : Controller
     {
         private readonly MembersService service;
-		UserManager<IdentityUser> userManager;
-		LoopContext context;
+        UserManager<IdentityUser> userManager;
+        LoopContext context;
 
-		public MemberController(MembersService service, UserManager<IdentityUser> userManager, LoopContext context)
+        public MemberController(MembersService service, UserManager<IdentityUser> userManager, LoopContext context)
         {
             this.service = service;
-			this.userManager = userManager;
-			this.context = context;
+            this.userManager = userManager;
+            this.context = context;
         }
 
         [HttpGet]
@@ -38,23 +38,23 @@ namespace Loop.Controllers
             {
                 return View(activity);
             }
-			var user = await userManager.GetUserAsync(HttpContext.User);
-			var id = user.Id;
-			await service.AddActivity(activity, id);
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            var id = user.Id;
+            await service.AddActivity(activity, id);
             return RedirectToAction(nameof(Activities));
         }
 
         [HttpGet]
         public async Task<IActionResult> Activities(int activities)
         {
-			var user = await userManager.GetUserAsync(HttpContext.User);
-			var id = user.Id;
-			var activitiesCount = context.Activity.Where(o => o.UserId == id).Count();
-			if (activitiesCount==0)
-			{
-				return RedirectToAction(nameof(CreateActivity));
-			}
-			return View(await service.GetAllActivities(id));
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            var id = user.Id;
+            var activitiesCount = context.Activity.Where(o => o.UserId == id).Count();
+            if(activitiesCount == 0)
+            {
+                return RedirectToAction(nameof(CreateActivity));
+            }
+            return View(await service.GetAllActivities(id));
         }
 
         [HttpGet]
@@ -80,7 +80,7 @@ namespace Loop.Controllers
             return RedirectToAction(nameof(Activities));
         }
 
-       
+
         [HttpGet]
         public IActionResult SetStart()
         {
@@ -98,6 +98,14 @@ namespace Loop.Controllers
         public async Task<IActionResult> SetStop(int id)
         {
             await service.SetStop(DateTime.UtcNow.ToString(), id);
+            return RedirectToAction(nameof(Activity));
+        }
+
+        [HttpGet]
+        [Route("/member/gettotaltime")]
+        public async Task<IActionResult> GetTotalTime(int id)
+        {
+            await service.GetTotalTime(id);
             return RedirectToAction(nameof(Activity));
         }
     }
